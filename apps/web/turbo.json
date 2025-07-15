@@ -1,0 +1,8 @@
+{
+  "extends": ["//"],
+  "tasks": {
+    "lint": {
+      "env": ["TAURI_DEV_HOST"]
+    }
+  }
+}

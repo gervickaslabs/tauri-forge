@@ -1,0 +1,23 @@
+{
+  "extends": ["//"],
+  "tasks": {
+    "build": {
+      "dependsOn": ["build:tauri"],
+      "outputs": [],
+      "cache": false
+    },
+    "dev": {
+      "dependsOn": ["dev:tauri"],
+      "outputs": [],
+      "cache": false
+    },
+    "dev:tauri": {
+      "cache": false,
+      "persistent": false
+    },
+    "build:tauri": {
+      "cache": false,
+      "persistent": false
+    }
+  }
+}

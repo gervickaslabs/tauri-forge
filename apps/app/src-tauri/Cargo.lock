@@ -3637,6 +3637,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "tauri-forge-app"
+version = "0.1.0"
+dependencies = [
+ "serde",
+ "serde_json",
+ "tauri",
+ "tauri-build",
+ "tauri-plugin-opener",
+]
+
+[[package]]
 name = "tauri-macros"
 version = "2.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3648,17 +3659,6 @@ dependencies = [
  "syn 2.0.104",
  "tauri-codegen",
  "tauri-utils",
-]
-
-[[package]]
-name = "tauri-mcp-app"
-version = "0.1.0"
-dependencies = [
- "serde",
- "serde_json",
- "tauri",
- "tauri-build",
- "tauri-plugin-opener",
 ]
 
 [[package]]

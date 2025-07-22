@@ -20,25 +20,13 @@ Todo:
 
 - **Privacy**
 
----
-
-## Who’s It For?
-
-Todo:
-
-- Developers shipping desktop or mobile apps apps
-- Developers shipping assistants or agents
-- Product Teams needing a unified desktop & mobile codebase
-- Privacy Advocates building self‑hosted or offline‑capable tools
-- Open‑Source Contributors creating plugins, themes, or templates
-
 ## Example Use Cases
 
 Todo:
 
 - Build a local LLM assistant
 - Create an AI-powered customer support tool
-- Ship a desktop agent for automation workflows
+- Ship a desktop app with agent automation workflows
 
 ## Requirements
 
@@ -46,6 +34,7 @@ todo
 
 1. Nodejs and dependencies
 2. Rust and dependencies
+3. Verify your anti virus (windows popup some issues)
 
 ## Quick Start
 

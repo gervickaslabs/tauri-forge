@@ -5,7 +5,7 @@
   "identifier": "com.tauri-forge.app",
   "build": {
     "devUrl": "http://localhost:3000",
-    "frontendDist": "../../web/out"
+    "frontendDist": "../../view/out"
   },
   "app": {
     "windows": [

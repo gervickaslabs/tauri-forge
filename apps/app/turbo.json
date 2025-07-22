@@ -2,7 +2,7 @@
   "extends": ["//"],
   "tasks": {
     "build": {
-      "dependsOn": ["build:tauri"],
+      "dependsOn": ["view#build"],
       "outputs": [],
       "cache": false
     },

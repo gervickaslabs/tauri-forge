@@ -34,6 +34,7 @@ todo
 
 1. Nodejs and dependencies
 2. Rust and dependencies
+3. Verify your anti virus (windows popup some issues)
 
 ## Quick Start
 

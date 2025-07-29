@@ -1,6 +1,6 @@
 import { generateText, type Message } from "ai";
 import { useState } from "react";
-import { models } from "@repo/ai/lib/openai/models";
+import { models } from "../openai/models";
 
 export function useChat() {
   const [messages] = useState<Array<Message>>([]);

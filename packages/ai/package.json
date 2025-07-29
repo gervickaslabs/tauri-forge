@@ -3,13 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "files": [
-    "src"
+    "dist"
   ],
   "exports": {
-    "./*": "./src/**.(js|ts|jsx|tsx)",
-    "./components/*": "./src/components/*.js",
-    "./hooks/*": "./src/hooks/*.js",
-    "./utils/*": "./src/utils/*.js"
+    "./*": "./dist/*.js"
   },
   "scripts": {
     "clean": "git clean -xdf .cache .turbo dist node_modules",

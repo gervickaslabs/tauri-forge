@@ -1,0 +1,16 @@
+{
+  "extends": ["//"],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"]
+    },
+    "lint": {
+      "env": ["OPENAI_API_KEY"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    }
+  }
+}

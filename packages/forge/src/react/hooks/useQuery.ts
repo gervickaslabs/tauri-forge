@@ -11,10 +11,13 @@ export const useQuery = <P = void, R = unknown>(
   options?: UseQueryOptions<R>
 ) => {
   const { client } = useForgeContext();
+  if (!client) {
+    throw new Error("Client is not initialized");
+  }
 
   return useReactQuery<R>({
     ...options,
     queryKey: [key, payload],
-    queryFn: client ? () => client.query<P, R>(key, payload) : undefined,
+    queryFn: () => client.query<P, R>(key, payload),
   });
 };

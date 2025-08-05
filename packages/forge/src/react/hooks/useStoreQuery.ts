@@ -11,9 +11,13 @@ export function useStoreQuery<P = void, R = unknown>(
 ) {
   const { store } = useForgeContext();
 
+  if (!store) {
+    throw new Error("Store is not initialized");
+  }
+
   return useReactQuery<R>({
     ...options,
     queryKey: [key, payload],
-    queryFn: store ? () => store.retrieveRecord<P, R>(key, payload) : undefined,
+    queryFn: () => store.retrieveRecord<P, R>(key, payload),
   });
 }

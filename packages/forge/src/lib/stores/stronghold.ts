@@ -12,8 +12,11 @@ export class Stronghold implements Store {
   #stronghold: PluginStronghold | null = null;
 
   async init(): Promise<void> {
-    const vaultName = "vault.hold";
-    const vaultPath = `${await appDataDir()}/${vaultName}`;
+    const vaultName = "root";
+    const vaultFilename = `${vaultName}.hold`;
+
+    const vaultPath = `${await appDataDir()}/${vaultFilename}`;
+    console.log("Stronghold: Vault path:", vaultPath);
     const vaultPassword = "vault_password";
     const stronghold = await PluginStronghold.load(vaultPath, vaultPassword);
 
@@ -31,6 +34,7 @@ export class Stronghold implements Store {
 
     const data = await store?.get(key);
 
+    console.log("Stronghold: Record retrieved:", key, data);
     return JSON.parse(new TextDecoder().decode(new Uint8Array(data || [])));
   }
 
@@ -45,7 +49,8 @@ export class Stronghold implements Store {
     await store?.insert(key, data);
 
     await this.#stronghold?.save();
+    console.log("Stronghold: Record inserted:", key, record);
 
-    return record as R;
+    return JSON.parse(new TextDecoder().decode(new Uint8Array(data || [])));
   }
 }

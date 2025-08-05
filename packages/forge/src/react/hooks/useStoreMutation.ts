@@ -9,12 +9,13 @@ export function useStoreMutation<P = void, R = unknown>(
   options?: UseMutationOptions<R, unknown, P>
 ) {
   const { store } = useForgeContext();
+  if (!store) {
+    throw new Error("Store is not initialized");
+  }
 
   return useReactMutation<R, unknown, P>({
     ...options,
     mutationKey: [key],
-    mutationFn: store
-      ? (record) => store.insertRecord<P, R>(key, record)
-      : undefined,
+    mutationFn: (record) => store.insertRecord<P, R>(key, record),
   });
 }

@@ -21,7 +21,8 @@ const Home = () => {
   };
 
   /// simulate insert and retrieve using Stronghold
-  const { data: persistedData } = useStoreQuery<void, string>("persisted");
+  const { data: persistedData, refetch: simulatePersistedRefetch } =
+    useStoreQuery<void, { name: string }>("persisted");
 
   const { mutate: simulateStoreMutate, data: mutatedPersistedData } =
     useStoreMutation<
@@ -51,7 +52,12 @@ const Home = () => {
         </div>
         <div>
           <h2 className="text-3xl">Insert and retrieve using Stronghold</h2>
-          <div>persisted: {persistedData}</div>
+          <div>persisted: {persistedData?.name}</div>
+          <div>
+            <button type="button" onClick={() => simulatePersistedRefetch()}>
+              Refetch
+            </button>
+          </div>
           <div>persisted: {mutatedPersistedData?.name}</div>
           <div>
             <button type="button" onClick={handleStoreMutate}>

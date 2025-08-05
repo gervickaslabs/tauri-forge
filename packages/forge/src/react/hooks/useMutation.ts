@@ -10,11 +10,13 @@ export function useMutation<P = void, R = unknown>(
 ) {
   const { client } = useForgeContext();
 
+  if (!client) {
+    throw new Error("Client is not initialized");
+  }
+
   return useReactMutation<R, unknown, P>({
     ...options,
     mutationKey: [key],
-    mutationFn: client
-      ? (payload) => client.mutate<P, R>(key, payload)
-      : undefined,
+    mutationFn: (payload) => client.mutate<P, R>(key, payload),
   });
 }

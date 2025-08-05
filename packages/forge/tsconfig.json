@@ -7,10 +7,10 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "baseUrl": ".",
-    "rootDir": "src"
-    // "paths": {
-    //   "@/*": ["./src/*"]
-    // }
+    "rootDir": "src",
+    "paths": {
+      "@repo/forge/*": ["./src/*"]
+    }
   },
   "include": ["src"],
   "exclude": ["dist", "build", "node_modules"]

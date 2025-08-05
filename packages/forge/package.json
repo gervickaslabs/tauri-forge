@@ -1,7 +1,12 @@
 {
   "name": "@repo/forge",
   "version": "0.0.1",
-  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "./*": "./dist/*.js"
+  },
   "private": true,
   "scripts": {
     "clean": "git clean -xdf .cache .turbo dist node_modules",
@@ -11,7 +16,8 @@
     "lint": "eslint src --max-warnings 0"
   },
   "peerDependencies": {
-    "react": "^19"
+    "react": "^19",
+    "@tanstack/react-query": "^5"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.84.1",

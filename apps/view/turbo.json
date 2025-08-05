@@ -3,9 +3,6 @@
   "tasks": {
     "build": {
       "outputs": ["out/**"]
-    },
-    "lint": {
-      "env": ["TAURI_DEV_HOST"]
     }
   }
 }

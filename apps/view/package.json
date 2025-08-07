@@ -15,7 +15,7 @@
     "@repo/ui": "workspace:*",
     "@tanstack/react-query": "^5.84.1",
     "@tauri-apps/api": "^2.7.0",
-    "next": "^15.4.5",
+    "next": "^15.4.6",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },
@@ -24,12 +24,12 @@
     "@repo/tailwind-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@tailwindcss/postcss": "^4.1.11",
-    "@types/node": "^24.1.0",
+    "@types/node": "^24.2.0",
     "@types/react": "19.1.9",
     "@types/react-dom": "19.1.7",
     "eslint": "^9.32.0",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.11",
-    "typescript": "5.8.3"
+    "typescript": "5.9.2"
   }
 }

@@ -16,8 +16,8 @@
     "lint": "eslint src --max-warnings 0"
   },
   "peerDependencies": {
-    "react": "^19",
-    "@tanstack/react-query": "^5"
+    "@tanstack/react-query": "^5",
+    "react": "^19"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.84.1",
@@ -30,6 +30,6 @@
     "@repo/typescript-config": "workspace:*",
     "@types/react": "19.1.9",
     "eslint": "^9.32.0",
-    "typescript": "5.8.3"
+    "typescript": "5.9.2"
   }
 }

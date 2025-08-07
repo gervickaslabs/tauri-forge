@@ -3,7 +3,6 @@ fn greet(name: &str) -> String {
     format!("Hello, {}! You've been greeted from Rust!", name)
 }
 
-
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
@@ -24,11 +23,13 @@ pub fn run() {
                     ..Default::default()
                 };
                 let salt = "your_salt".as_bytes();
-                let key = hash_raw(password.as_ref(), salt, &config).expect("failed to hash password");
+                let key =
+                    hash_raw(password.as_ref(), salt, &config).expect("failed to hash password");
 
                 key.to_vec()
             })
-            .build())
+            .build(),
+        )
         .invoke_handler(tauri::generate_handler![greet])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

@@ -4,8 +4,15 @@ import { useQuery } from "@repo/forge/react/hooks/useQuery";
 import { useStoreQuery } from "@repo/forge/react/hooks/useStoreQuery";
 import { useMutation } from "@repo/forge/react/hooks/useMutation";
 import { useStoreMutation } from "@repo/forge/react/hooks/useStoreMutation";
+import { useForgeContext } from "@repo/forge/react/components/provider";
+// import { useEffect } from "react";
 
 const Home = () => {
+  const { client, store } = useForgeContext();
+
+  const simulateStoreQuery = async () => {
+    console.log("greet", await store?.retrieveRecord("greet"));
+  };
   /// simulate query and mutation using Tauri
   const { data: queriedData } = useQuery<{ name: string }, string>("greet", {
     name: "tauriforge",
@@ -24,6 +31,8 @@ const Home = () => {
   const { data: persistedData, refetch: simulatePersistedRefetch } =
     useStoreQuery<void, { name: string }>("persisted");
 
+  console.log("persistedData", persistedData);
+
   const { mutate: simulateStoreMutate, data: mutatedPersistedData } =
     useStoreMutation<
       { name: string },
@@ -35,6 +44,8 @@ const Home = () => {
   const handleStoreMutate = () => {
     simulateStoreMutate({ name: "tauriforge" });
   };
+
+  console.log("mutatedPersistedData", mutatedPersistedData);
 
   return (
     <div>
@@ -65,6 +76,9 @@ const Home = () => {
             </button>
           </div>
         </div>
+        <button type="button" onClick={() => simulateStoreQuery()}>
+          simulate
+        </button>
       </div>
     </div>
   );

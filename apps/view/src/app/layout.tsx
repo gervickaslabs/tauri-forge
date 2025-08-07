@@ -7,8 +7,7 @@ import { Stronghold } from "@repo/forge/lib/stores/stronghold";
 import { ForgeProvider } from "@repo/forge/react/components/provider";
 
 import "./globals.css";
-import { useEffect } from "react";
-
+import { use, useEffect } from "react";
 const queryClient = new QueryClient();
 const store = new Stronghold();
 const client = new Tauri();
@@ -21,6 +20,17 @@ export default function Layout({
   useEffect(() => {
     store.init();
   }, []);
+
+  // const getForge = async ({ config: any }) => {
+  //   return true;
+  // };
+
+  // const forge = use(
+  //   getForge({
+  //     config: {},
+  //   })
+  // );
+
   return (
     <html lang="en">
       <body>

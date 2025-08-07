@@ -1,6 +1,10 @@
 {
   "name": "tauri-forge",
   "private": true,
+  "author": {
+    "name": "welliton gervickas",
+    "url": "https://github.com/wellitongervickas"
+  },
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",

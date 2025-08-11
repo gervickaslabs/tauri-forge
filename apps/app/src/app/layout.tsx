@@ -23,6 +23,7 @@ export default function Layout({
   useEffect(() => {
     store.init();
   }, []);
+  // store.init();
 
   // const getForge = async ({ config: any }) => {
   //   return true;

@@ -51,9 +51,6 @@ importers:
       '@repo/tailwind-config':
         specifier: workspace:*
         version: link:../../packages/tailwind-config
-      '@repo/typescript-config':
-        specifier: workspace:*
-        version: link:../../packages/typescript-config
       '@tailwindcss/postcss':
         specifier: ^4.1.11
         version: 4.1.11
@@ -142,9 +139,6 @@ importers:
       '@repo/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
-      '@repo/typescript-config':
-        specifier: workspace:*
-        version: link:../typescript-config
       '@types/react':
         specifier: 19.1.9
         version: 19.1.9
@@ -163,8 +157,6 @@ importers:
       tailwindcss:
         specifier: ^4.1.11
         version: 4.1.11
-
-  packages/typescript-config: {}
 
   packages/ui:
     dependencies:
@@ -193,9 +185,6 @@ importers:
       '@repo/tailwind-config':
         specifier: workspace:*
         version: link:../tailwind-config
-      '@repo/typescript-config':
-        specifier: workspace:*
-        version: link:../typescript-config
       '@tailwindcss/cli':
         specifier: ^4.1.11
         version: 4.1.11

@@ -6,6 +6,7 @@ import { useMutation } from "@repo/forge/react/hooks/useMutation";
 import { useStoreMutation } from "@repo/forge/react/hooks/useStoreMutation";
 import { useForgeContext } from "@repo/forge/react/components/provider";
 // import { useEffect } from "react";
+import { Card } from "@repo/ui/components/card";
 
 const Home = () => {
   const {
@@ -51,7 +52,7 @@ const Home = () => {
   console.log("mutatedPersistedData", mutatedPersistedData);
 
   return (
-    <div>
+    <Card>
       <div>
         <h1 className="text-4xl font-bold">Features</h1>
         <div>
@@ -72,7 +73,7 @@ const Home = () => {
               Refetch
             </button>
           </div>
-          <div>persisted: {mutatedPersistedData?.name}</div>
+          <div>muted persisted: {mutatedPersistedData?.name}</div>
           <div>
             <button type="button" onClick={handleStoreMutate}>
               Insert
@@ -83,7 +84,7 @@ const Home = () => {
           simulate
         </button>
       </div>
-    </div>
+    </Card>
   );
 };
 

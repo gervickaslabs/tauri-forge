@@ -91,8 +91,8 @@ export const buildForgeConfig = () =>
  *   console.log(data);
  * });
  *
- * forge.database.stronghold.openVault(args...);
- * forge.database.stronghold.mutateVault("key", { param: "value" });
- * forge.database.stronghold.closeVault();
+ * forge.database.stronghold.init(args...);
+ * forge.database.stronghold.retrieveRecord("key", { param: "value" });
+ * forge.database.stronghold.insertRecord();
  *
  */

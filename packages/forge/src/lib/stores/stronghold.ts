@@ -1,6 +1,12 @@
 import type { Store } from "@repo/forge/lib/stores/types";
 
-import { appDataDir } from "@tauri-apps/api/path";
+import {
+  appDataDir,
+  // tempDir,
+  // appLocalDataDir,
+  // pictureDir,
+  // dirname,
+} from "@tauri-apps/api/path";
 
 import {
   Client,
@@ -12,13 +18,15 @@ export class Stronghold implements Store {
   #stronghold: PluginStronghold | null = null;
 
   async init(): Promise<void> {
-    const vaultName = "root";
+    console.log("init stronghold");
+    const vaultName = "tauriforge.0001";
     const vaultFilename = `${vaultName}.hold`;
 
     const vaultPath = `${await appDataDir()}/${vaultFilename}`;
 
     const vaultPassword = "vault_password_1234";
     const stronghold = await PluginStronghold.load(vaultPath, vaultPassword);
+    console.log("stronghold", stronghold);
 
     try {
       this.#client = await stronghold.loadClient(vaultName);
@@ -31,6 +39,10 @@ export class Stronghold implements Store {
 
   async retrieveRecord<P, R>(key: string, _?: P): Promise<R> {
     const store = this.#client?.getStore();
+
+    console.log("store", store);
+
+    if (!store) await this.init();
 
     const data = await store?.get(key);
 

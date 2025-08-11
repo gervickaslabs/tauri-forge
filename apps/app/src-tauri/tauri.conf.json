@@ -1,16 +1,16 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "tauri-forge",
-  "version": "0.1.0",
-  "identifier": "com.tauri-forge.app",
+  "productName": "tauriforge",
+  "version": "0.0.1",
+  "identifier": "com.tauriforge.app",
   "build": {
     "devUrl": "http://localhost:3000",
-    "frontendDist": "../../view/out"
+    "frontendDist": "../out/next"
   },
   "app": {
     "windows": [
       {
-        "title": "tauri-forge",
+        "title": "tauriforge",
         "width": 800,
         "height": 600
       }

@@ -1,8 +1,8 @@
 [package]
-name = "tauri-forge"
-version = "0.1.0"
-description = "A Tauri App"
-authors = ["you"]
+name = "tauriforge"
+version = "0.0.1"
+description = "A Tauri Forge App"
+authors = ["https://github.com/wellitongervickas"]
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
@@ -22,4 +22,6 @@ tauri = { version = "2", features = [] }
 tauri-plugin-opener = "2"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
+tauri-plugin-stronghold = "2.3.0"
+rust-argon2 = "3.0"
 

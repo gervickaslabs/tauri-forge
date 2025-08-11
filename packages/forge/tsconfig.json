@@ -1,17 +1,17 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "strict": false,
     "jsx": "react-jsx",
     "outDir": "dist",
     "target": "ES2022",
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "module": "ESNext",
+    "removeComments": false,
     "moduleResolution": "bundler",
     "baseUrl": ".",
     "rootDir": "src",
     "paths": {
-      "@/*": ["./src/*"]
+      "@repo/forge/*": ["./src/*"]
     }
   },
   "include": ["src"],

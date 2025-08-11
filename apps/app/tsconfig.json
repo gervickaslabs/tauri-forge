@@ -5,10 +5,10 @@
       {
         "name": "next"
       }
-    ],
-    "paths": {
-      "@view*": ["./src/*"]
-    }
+    ]
+    // "paths": {
+    //   "@app*": ["./src/*"]
+    // }
   },
   "include": [
     "**/*.ts",

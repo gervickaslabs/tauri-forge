@@ -8,7 +8,10 @@ import { useForgeContext } from "@repo/forge/react/components/provider";
 // import { useEffect } from "react";
 
 const Home = () => {
-  const { client, store } = useForgeContext();
+  const {
+    // client,
+    store,
+  } = useForgeContext();
 
   const simulateStoreQuery = async () => {
     console.log("greet", await store?.retrieveRecord("greet"));

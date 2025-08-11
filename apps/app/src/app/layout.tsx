@@ -7,7 +7,10 @@ import { Stronghold } from "@repo/forge/lib/stores/stronghold";
 import { ForgeProvider } from "@repo/forge/react/components/provider";
 
 import "./globals.css";
-import { use, useEffect } from "react";
+import {
+  // use,
+  useEffect,
+} from "react";
 const queryClient = new QueryClient();
 const store = new Stronghold();
 const client = new Tauri();

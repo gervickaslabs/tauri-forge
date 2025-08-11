@@ -5,7 +5,7 @@
   "identifier": "com.tauriforge.app",
   "build": {
     "devUrl": "http://localhost:3000",
-    "frontendDist": "../../view/out"
+    "frontendDist": "../out/next"
   },
   "app": {
     "windows": [

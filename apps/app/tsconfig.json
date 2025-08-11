@@ -12,6 +12,7 @@
     "jsx": "preserve",
     "noEmit": true
   },
+
   "include": [
     "**/*.ts",
     "**/*.tsx",
@@ -20,7 +21,5 @@
     "next.config.js",
     "./out/next/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

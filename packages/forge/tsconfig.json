@@ -9,10 +9,10 @@
     "removeComments": false,
     "moduleResolution": "bundler",
     "baseUrl": ".",
-    "rootDir": "src",
-    "paths": {
-      "@repo/forge/*": ["./src/*"]
-    }
+    "rootDir": "src"
+    // "paths": {
+    //   "@repo/forge/*": ["./src/*"]
+    // }
   },
   "include": ["src"],
   "exclude": ["dist", "build", "node_modules"]

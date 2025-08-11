@@ -1,4 +1,4 @@
-import type { BaseEventAdapter } from "@repo/forge/lib/api/types";
+import type { BaseEventAdapter } from "./types";
 
 import { emit, listen, UnlistenFn } from "@tauri-apps/api/event";
 

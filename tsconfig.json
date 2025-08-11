@@ -1,12 +1,10 @@
 {
   "extends": "./tsconfig.base.json",
+
   "references": [
     {
       "path": "./packages/forge"
-    },
-    {
-      "path": "./packages/ui"
     }
   ],
-  "include": []
+  "include": ["./scripts/**/*.ts"]
 }

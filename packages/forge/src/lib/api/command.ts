@@ -1,4 +1,4 @@
-import type { BaseCommandAdapter } from "@repo/forge/lib/api/types";
+import type { BaseCommandAdapter } from "./types";
 
 import { invoke } from "@tauri-apps/api/core";
 

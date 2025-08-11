@@ -1,98 +1,88 @@
-export const buildForgeConfig = () =>
-  /**
-   *   options: any
-   */
-  {
-    /// return a default Forge config object
-    return {
-      /// for salt and so on... ex: crypto.createHash("sha256").update(config.secret).digest("hex");
-      secret: null,
-      api: {
-        command: null, /// CommandAdapter
-        event: null, /// EventAdapter
-        http: null, /// HttpAdapter
-      },
-      storage: {
-        store: null, /// StoreAdapter
-        stronghold: null, /// StrongholdAdapter
-        sessionStorage: null, /// SessionStorageAdapter
-        localStorage: null, /// LocalStorageAdapter
-        indexedDB: null, /// IndexedDBAdapter
-        inMemory: null, /// InMemoryAdapter
-      },
-      views: {
-        root: {
-          providers: null,
-          layout: null,
-          components: {
-            header: null,
-            footer: null,
-            content: null,
-          },
-          children: [
-            {
-              providers: null,
-              layout: null,
-              components: {
-                header: null,
-                footer: null,
-                content: null,
-                aside: null,
-              },
-            },
-          ],
-        },
-      },
-    };
+import type { BaseStrongholdAdapter } from "./storage/types";
+
+import type { BaseCommandAdapter, BaseEventAdapter } from "./api/types";
+
+import { CommandAdapter, EventAdapter } from "./api";
+
+import { Stronghold } from "./storage";
+
+import type {
+  InitOptions,
+  BaseForge,
+  SanitizedConfig,
+  ForgeConfig,
+} from "./types";
+
+export class Forge implements BaseForge {
+  #config!: SanitizedConfig;
+
+  #storage: {
+    stronghold: BaseStrongholdAdapter | null;
+  } = {
+    stronghold: null,
   };
 
-// const config = buildForgeConfig(
-//   /// add overrides here
-//   {
-//     api: {
-//       /// add overrides here
-//     },
-//   }
-// );
+  #api: {
+    command: BaseCommandAdapter | null;
+    event: BaseEventAdapter | null;
+  } = {
+    command: null,
+    event: null,
+  };
 
-// class Forge {
-//   /// add methods and properties for Forge instance
-//   constructor(private config: any) {}
+  async init(options: InitOptions) {
+    const { config } = options;
 
-//   init() {
-//     return this;
-//   }
+    if (config.storage?.stronghold?.enabled) {
+      this.#storage.stronghold = new Stronghold();
+    }
 
-//   api: any;
-// }
+    if (config.api?.command?.enabled) {
+      this.#api.command = new CommandAdapter();
+    }
 
-// const getForge = async (config: any) => {
-//   /// create a logic for memory cache or initialize it forge.init()
-//   /// return a Forge instance with methods and etc.
-//   return new Forge(config);
-// };
+    if (config.api?.event?.enabled) {
+      this.#api.event = new EventAdapter();
+    }
 
-// const forge = await getForge(config);
+    this.#config = config;
 
-// forge.api;
+    return this;
+  }
 
-/**
- * ex usage:
- *
- * forge.config that return the config object
- *
- * forge.api.command.query("key", { param: "value" });
- * forge.api.command.mutate("key", { param: "value" });
- *
- * forge.database.store.query("key", { param: "value" });
- * forge.database.store.mutate("key", { param: "value" });
- *
- * forge.database.store.on("key", (data) => {
- *   console.log(data);
- * });
- *
- * forge.database.stronghold.init(args...);
- * forge.database.stronghold.retrieveRecord("key", { param: "value" });
- * forge.database.stronghold.insertRecord();
- *
- */
+  get config() {
+    return this.#config;
+  }
+
+  get storage() {
+    return this.#storage;
+  }
+
+  get api() {
+    return this.#api;
+  }
+}
+
+export const buildConfig = (options: ForgeConfig): SanitizedConfig => {
+  return {
+    ...options,
+    storage: {
+      stronghold: {
+        enabled: options.storage?.stronghold?.enabled ?? false,
+      },
+    },
+    api: {
+      command: {
+        enabled: options.api?.command?.enabled ?? false,
+      },
+      event: {
+        enabled: options.api?.event?.enabled ?? false,
+      },
+    },
+  };
+};
+
+export const getForge = async (options: InitOptions) => {
+  const forge = new Forge();
+  return await forge.init(options);
+};

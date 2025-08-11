@@ -43,11 +43,7 @@ export interface InitOptions {
 
 export interface BaseForge {
   config: SanitizedConfig;
-  storage: {
-    stronghold: BaseStrongholdAdapter | null;
-  };
-  api: {
-    command: BaseCommandAdapter | null;
-    event: BaseEventAdapter | null;
-  };
+  stronghold: BaseStrongholdAdapter | null;
+  command: BaseCommandAdapter | null;
+  event: BaseEventAdapter | null;
 }

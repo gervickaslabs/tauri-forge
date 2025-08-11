@@ -16,33 +16,24 @@ import type {
 export class Forge implements BaseForge {
   #config!: SanitizedConfig;
 
-  #storage: {
-    stronghold: BaseStrongholdAdapter | null;
-  } = {
-    stronghold: null,
-  };
+  #stronghold: BaseStrongholdAdapter | null = null;
 
-  #api: {
-    command: BaseCommandAdapter | null;
-    event: BaseEventAdapter | null;
-  } = {
-    command: null,
-    event: null,
-  };
+  #command: BaseCommandAdapter | null = null;
+  #event: BaseEventAdapter | null = null;
 
   async init(options: InitOptions) {
     const { config } = options;
 
     if (config.storage?.stronghold?.enabled) {
-      this.#storage.stronghold = new Stronghold();
+      this.#stronghold = new Stronghold();
     }
 
     if (config.api?.command?.enabled) {
-      this.#api.command = new CommandAdapter();
+      this.#command = new CommandAdapter();
     }
 
     if (config.api?.event?.enabled) {
-      this.#api.event = new EventAdapter();
+      this.#event = new EventAdapter();
     }
 
     this.#config = config;
@@ -54,12 +45,16 @@ export class Forge implements BaseForge {
     return this.#config;
   }
 
-  get storage() {
-    return this.#storage;
+  get stronghold() {
+    return this.#stronghold;
   }
 
-  get api() {
-    return this.#api;
+  get event() {
+    return this.#event;
+  }
+
+  get command() {
+    return this.#command;
   }
 }
 

@@ -11,12 +11,12 @@ const Home = () => {
   const handleCommandMutate = async () => {
     console.log(
       "command mutate",
-      await forge?.api?.command?.mutate("greet", { name: "world" })
+      await forge?.command?.mutate("greet", { name: "world" })
     );
   };
 
   const handCommandQuery = async () => {
-    console.log("command query", await forge?.api?.command?.query("greet_2"));
+    console.log("command query", await forge?.command?.query("greet_2"));
   };
 
   return (

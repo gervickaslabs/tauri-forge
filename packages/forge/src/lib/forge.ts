@@ -19,20 +19,21 @@ export class Forge implements BaseForge {
   #stronghold: BaseStrongholdAdapter | null = null;
 
   #command: BaseCommandAdapter | null = null;
+
   #event: BaseEventAdapter | null = null;
 
   async init(options: InitOptions) {
     const { config } = options;
 
-    if (config.storage?.stronghold?.enabled) {
+    if (config?.stronghold?.enabled) {
       this.#stronghold = new Stronghold();
     }
 
-    if (config.api?.command?.enabled) {
+    if (config?.command?.enabled) {
       this.#command = new CommandAdapter();
     }
 
-    if (config.api?.event?.enabled) {
+    if (config?.event?.enabled) {
       this.#event = new EventAdapter();
     }
 
@@ -61,18 +62,14 @@ export class Forge implements BaseForge {
 export const buildConfig = (options: ForgeConfig): SanitizedConfig => {
   return {
     ...options,
-    storage: {
-      stronghold: {
-        enabled: options.storage?.stronghold?.enabled ?? false,
-      },
+    stronghold: {
+      enabled: options?.stronghold?.enabled ?? false,
     },
-    api: {
-      command: {
-        enabled: options.api?.command?.enabled ?? false,
-      },
-      event: {
-        enabled: options.api?.event?.enabled ?? false,
-      },
+    command: {
+      enabled: options?.command?.enabled ?? false,
+    },
+    event: {
+      enabled: options?.event?.enabled ?? false,
     },
   };
 };

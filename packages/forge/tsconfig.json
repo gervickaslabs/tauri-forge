@@ -7,12 +7,7 @@
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "removeComments": false,
-    "moduleResolution": "bundler",
-    "baseUrl": ".",
-    "rootDir": "src"
-    // "paths": {
-    //   "@repo/forge/*": ["./src/*"]
-    // }
+    "moduleResolution": "bundler"
   },
   "include": ["src"],
   "exclude": ["dist", "build", "node_modules"]

@@ -1,39 +1,28 @@
-import type { BaseStrongholdAdapter } from "@repo/forge/lib/storage/types";
+import type { BaseStrongholdAdapter } from "./storage/types";
 
-import type {
-  BaseCommandAdapter,
-  BaseEventAdapter,
-} from "@repo/forge/lib/api/types";
+import type { BaseCommandAdapter, BaseEventAdapter } from "./api/types";
 
 export interface ForgeConfig {
-  storage?: {
-    stronghold?: {
-      enabled?: boolean;
-    };
+  stronghold?: {
+    enabled?: boolean;
   };
-  api?: {
-    command?: {
-      enabled?: boolean;
-    };
-    event?: {
-      enabled?: boolean;
-    };
+  command?: {
+    enabled?: boolean;
+  };
+  event?: {
+    enabled?: boolean;
   };
 }
 
 export interface SanitizedConfig {
-  storage: {
-    stronghold: {
-      enabled: boolean;
-    };
+  stronghold: {
+    enabled: boolean;
   };
-  api: {
-    command: {
-      enabled: boolean;
-    };
-    event: {
-      enabled: boolean;
-    };
+  command: {
+    enabled: boolean;
+  };
+  event: {
+    enabled: boolean;
   };
 }
 

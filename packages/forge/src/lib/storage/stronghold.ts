@@ -1,7 +1,4 @@
-import type {
-  BaseStrongholdAdapter,
-  StrongholdInitOptions,
-} from "@repo/forge/lib/storage/types";
+import type { BaseStrongholdAdapter, StrongholdInitOptions } from "./types";
 
 import { appDataDir } from "@tauri-apps/api/path";
 

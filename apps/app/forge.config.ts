@@ -1,18 +1,14 @@
 import { buildConfig } from "@repo/forge/lib/forge";
 
 export const config = buildConfig({
-  api: {
-    command: {
-      enabled: true,
-    },
-    event: {
-      enabled: true,
-    },
+  command: {
+    enabled: true,
   },
-  storage: {
-    stronghold: {
-      enabled: true,
-    },
+  event: {
+    enabled: true,
+  },
+  stronghold: {
+    enabled: true,
   },
 });
 

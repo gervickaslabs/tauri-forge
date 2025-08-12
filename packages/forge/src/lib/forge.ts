@@ -20,15 +20,10 @@ export const getForge = async (
   }
 
   // Create and cache new Forge instance
-  let forge: BaseForge;
-
-  if (CustomForge) {
-    forge = new CustomForge();
-  } else {
-    forge = new Forge();
-  }
+  const forge: BaseForge = CustomForge ? new CustomForge() : new Forge();
 
   await forge.init(options);
+
   cached.set(config, forge);
 
   return forge;

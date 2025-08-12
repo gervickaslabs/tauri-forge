@@ -9,12 +9,7 @@ describe("getForge", () => {
   });
 
   test("calls init once for same config reference", async () => {
-    const config = {
-      event: {
-        enabled: true,
-      },
-    } as SanitizedConfig;
-
+    const config = {} as SanitizedConfig;
     const options = { config };
 
     vi.spyOn(Forge.prototype, "init");
@@ -26,11 +21,7 @@ describe("getForge", () => {
   });
 
   test("return same instance for same config reference", async () => {
-    const config = {
-      event: {
-        enabled: true,
-      },
-    } as SanitizedConfig;
+    const config = {} as SanitizedConfig;
 
     const options = { config };
 
@@ -65,11 +56,7 @@ describe("getForge", () => {
   });
 
   test('return a custom instance if "CustomForge" is provided', async () => {
-    const config = {
-      event: {
-        enabled: true,
-      },
-    } as SanitizedConfig;
+    const config = {} as SanitizedConfig;
 
     const options = { config };
 

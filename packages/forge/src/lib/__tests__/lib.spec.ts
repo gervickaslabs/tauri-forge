@@ -35,7 +35,7 @@ describe("Forge", () => {
     expect(forge.config).toEqual(config);
   });
 
-  test("returns common APIs implementation after initialization when enabled", async () => {
+  test("returns common APIs implementation after initialization if enabled", async () => {
     const config = {
       stronghold: { enabled: true },
       command: { enabled: true },

@@ -7,9 +7,9 @@ describe("buildConfig", () => {
   test("returns defaults when no options are provided", () => {
     const config = buildConfig();
     const expected: SanitizedConfig = {
-      stronghold: { enabled: true },
-      command: { enabled: true },
-      event: { enabled: true },
+      stronghold: { enabled: false },
+      command: { enabled: false },
+      event: { enabled: false },
     };
     expect(config).toEqual(expected);
   });
@@ -41,22 +41,22 @@ describe("buildConfig", () => {
     const config = buildConfig(options);
     expect(config).toEqual({
       stronghold: { enabled: false },
-      command: { enabled: true },
-      event: { enabled: true },
+      command: { enabled: false },
+      event: { enabled: false },
     });
   });
 
   test("ignores extra properties in options", () => {
     const options = {
-      stronghold: { enabled: false },
+      stronghold: { enabled: true },
       extra: { something: 123 },
     } as unknown as ForgeConfig;
 
     const config = buildConfig(options);
     expect(config).toEqual({
-      stronghold: { enabled: false },
-      command: { enabled: true },
-      event: { enabled: true },
+      stronghold: { enabled: true },
+      command: { enabled: false },
+      event: { enabled: false },
     });
   });
 });

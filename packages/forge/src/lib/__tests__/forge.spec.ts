@@ -1,4 +1,4 @@
-import { describe, test, expect, vi, beforeEach, afterEach } from "vitest";
+import { describe, test, expect, vi, beforeEach } from "vitest";
 import { getForge } from "../forge";
 import { Forge } from "..";
 import { SanitizedConfig } from "../types";
@@ -34,8 +34,6 @@ describe("getForge", () => {
 
     const options = { config };
 
-    vi.spyOn(Forge.prototype, "init");
-
     const forgeInstance = await getForge(options);
     const forgeInstance2 = await getForge(options);
 
@@ -51,8 +49,6 @@ describe("getForge", () => {
 
     const options = { config };
 
-    vi.spyOn(Forge.prototype, "init");
-
     const forgeInstance = await getForge(options);
 
     const config2 = {
@@ -66,5 +62,21 @@ describe("getForge", () => {
     const forgeInstance2 = await getForge(options2);
 
     expect(forgeInstance).not.toBe(forgeInstance2);
+  });
+
+  test('return a custom instance if "CustomForge" is provided', async () => {
+    const config = {
+      event: {
+        enabled: true,
+      },
+    } as SanitizedConfig;
+
+    const options = { config };
+
+    class MyCustomForge extends Forge {}
+
+    const forgeInstance = await getForge(options, MyCustomForge);
+
+    expect(forgeInstance).toBeInstanceOf(MyCustomForge);
   });
 });

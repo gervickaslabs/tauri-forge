@@ -20,16 +20,6 @@ pnpm dev
 pnpm build
 ```
 
-## Roadmap
-
-- [ ] Environment setup 🚧
-- [ ] Plugin API 🚧
-- [ ] Initial interface 🚧
-- [ ] Tests 🚧
-- [ ] Documentation 🚧
-- [ ] Package scripts 🚧
-- [ ] Repository pipelines
-
 ## License
 
 MIT License.

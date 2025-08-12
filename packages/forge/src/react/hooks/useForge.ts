@@ -1,6 +1,7 @@
 "use client";
 import type { SanitizedConfig } from "../../lib/types";
-import { Forge, getForge } from "../../lib/forge";
+import { Forge } from "../../lib";
+import { getForge } from "../../lib/forge";
 import { useEffect, useState } from "react";
 import { useIsMounted } from "./utils/useIsMounted";
 

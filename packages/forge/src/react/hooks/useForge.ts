@@ -1,8 +1,6 @@
-import type { BaseForge, SanitizedConfig } from "../../lib/types";
-import { getForge } from "../../lib/forge";
+import type { SanitizedConfig } from "../../lib/types";
+import { Forge, getForge } from "../../lib/forge";
 import { useEffect, useState } from "react";
-
-export type Forge = BaseForge;
 
 export function useForge(config: SanitizedConfig) {
   const [forge, setForge] = useState<Forge | null>(null);

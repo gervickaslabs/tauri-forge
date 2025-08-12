@@ -1,10 +1,6 @@
-import type { BaseStrongholdAdapter } from "./storage/types";
-
-import type { BaseCommandAdapter, BaseEventAdapter } from "./api/types";
-
-import { CommandAdapter, EventAdapter } from "./api";
-
-import { Stronghold } from "./storage";
+import { BaseCommandAdapter, CommandAdapter } from "./command";
+import { BaseEventAdapter, EventAdapter } from "./event";
+import { BaseStrongholdAdapter, Stronghold } from "./stronghold";
 
 import type {
   InitOptions,
@@ -14,7 +10,7 @@ import type {
 } from "./types";
 
 export class Forge implements BaseForge {
-  #config!: SanitizedConfig;
+  #config: SanitizedConfig = buildConfig();
 
   #stronghold: BaseStrongholdAdapter | null = null;
 
@@ -59,22 +55,22 @@ export class Forge implements BaseForge {
   }
 }
 
-export const buildConfig = (options: ForgeConfig): SanitizedConfig => {
+export const buildConfig = (options?: ForgeConfig): SanitizedConfig => {
   return {
     ...options,
     stronghold: {
-      enabled: options?.stronghold?.enabled ?? false,
+      enabled: options?.stronghold?.enabled ?? true,
     },
     command: {
-      enabled: options?.command?.enabled ?? false,
+      enabled: options?.command?.enabled ?? true,
     },
     event: {
-      enabled: options?.event?.enabled ?? false,
+      enabled: options?.event?.enabled ?? true,
     },
   };
 };
 
-export const getForge = async (options: InitOptions) => {
+export const getForge = async (options: InitOptions): Promise<Forge> => {
   const forge = new Forge();
   return await forge.init(options);
 };

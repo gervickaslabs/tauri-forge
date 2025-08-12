@@ -1,6 +1,6 @@
-import type { BaseStrongholdAdapter } from "./storage/types";
-
-import type { BaseCommandAdapter, BaseEventAdapter } from "./api/types";
+import { BaseCommandAdapter } from "./command";
+import { BaseEventAdapter } from "./event";
+import { BaseStrongholdAdapter } from "./stronghold";
 
 export interface ForgeConfig {
   stronghold?: {

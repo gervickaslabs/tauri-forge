@@ -1,5 +1,8 @@
 "use client";
 
+import { ForgeProvider } from "@repo/forge/react/components/provider";
+import config from "../../forge.config";
+
 import "./globals.css";
 
 export default function Layout({
@@ -9,7 +12,9 @@ export default function Layout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <ForgeProvider config={config}>{children}</ForgeProvider>
+      </body>
     </html>
   );
 }

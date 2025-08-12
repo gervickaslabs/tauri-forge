@@ -1,12 +1,10 @@
 "use client";
 
 import { Card } from "@repo/ui/components/card";
-import { useForge } from "@repo/forge/react/hooks/useForge";
-
-import config from "../../forge.config";
+import { useForgeContext } from "@repo/forge/react/components/provider";
 
 const Home = () => {
-  const forge = useForge(config);
+  const { forge } = useForgeContext();
 
   const handleCommandMutate = async () => {
     console.log(

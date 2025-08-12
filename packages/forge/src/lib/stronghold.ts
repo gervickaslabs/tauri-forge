@@ -1,11 +1,24 @@
-import type { BaseStrongholdAdapter, StrongholdInitOptions } from "./types";
-
 import { appDataDir } from "@tauri-apps/api/path";
 
 import {
   Client,
   Stronghold as PluginStronghold,
 } from "@tauri-apps/plugin-stronghold";
+
+export type StrongholdInitOptions = {
+  vaultName: string;
+  vaultPassword: string;
+  vaultExtension?: string;
+};
+
+export interface BaseStrongholdAdapter {
+  load(options: StrongholdInitOptions): Promise<void>;
+  unload(): Promise<void>;
+  retrieveRecord<R = unknown>(key: string): Promise<R>;
+  insertRecord<P = void, R = unknown>(key: string, record?: P): Promise<R>;
+  deleteRecord(key: string): Promise<boolean>;
+  save(): Promise<void>;
+}
 
 export class Stronghold implements BaseStrongholdAdapter {
   #client: Client | null = null;

@@ -1,20 +1,22 @@
 import { Forge } from ".";
-
 import type { InitOptions } from "./types";
 
-const cached = new Map<string, Forge>();
+/**
+ * Cache Forge instances by their exact config object reference.
+ */
+const cached = new WeakMap<InitOptions["config"], Forge>();
 
 export const getForge = async (options: InitOptions): Promise<Forge> => {
   const { config } = options;
 
-  /**
-   * Cache the Forge instance by its config
-   */
-  const key = JSON.stringify(config);
-
-  if (cached.has(key)) {
-    return cached.get(key)!;
+  // Return from cache if same config object was used before
+  if (cached.has(config)) {
+    return cached.get(config)!;
   }
 
-  return cached.set(key, await new Forge().init(options)).get(key)!;
+  // Create and cache new Forge instance
+  const forge = await new Forge().init(options);
+  cached.set(config, forge);
+
+  return forge;
 };

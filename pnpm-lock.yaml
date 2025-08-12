@@ -123,9 +123,6 @@ importers:
 
   packages/forge:
     dependencies:
-      '@tanstack/react-query':
-        specifier: ^5.84.1
-        version: 5.84.1(react@19.1.1)
       '@tauri-apps/api':
         specifier: ^2.7.0
         version: 2.7.0

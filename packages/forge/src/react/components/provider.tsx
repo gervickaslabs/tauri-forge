@@ -28,6 +28,7 @@ export const ForgeProvider = ({
 
 export function useForgeContext() {
   const ctx = useContext(ForgeContext);
-  if (!ctx) throw new Error(`Forge context must be used inside forge provider`);
+
+  if (!ctx) throw new Error(`ForgeContext must be used inside ForgeProvider`);
   return ctx;
 }

@@ -1,35 +1,34 @@
 import { createContext, useContext } from "react";
-import type { Client } from "@repo/forge/lib/clients/types";
-import type { Store } from "@repo/forge/lib/stores/types";
+
+import { Forge } from "../../lib/forge";
+import { SanitizedConfig } from "../../lib/types";
+import { useForge } from "../hooks";
 
 export interface ForgeContextValue {
-  client: Client | null;
-  store: Store | null;
+  forge: Forge | null;
 }
 
 export const ForgeContext = createContext<ForgeContextValue>({
-  client: null,
-  store: null,
+  forge: null,
 });
 
 export const ForgeProvider = ({
-  client,
-  store,
+  config,
   children,
 }: {
-  client: Client;
-  store: Store;
+  config: SanitizedConfig;
   children: React.ReactNode;
 }) => {
+  const forge = useForge(config);
+
   return (
-    <ForgeContext.Provider value={{ client, store }}>
-      {children}
-    </ForgeContext.Provider>
+    <ForgeContext.Provider value={{ forge }}>{children}</ForgeContext.Provider>
   );
 };
 
 export function useForgeContext() {
   const ctx = useContext(ForgeContext);
-  if (!ctx) throw new Error(`Forge context must be used inside forge provider`);
+
+  if (!ctx) throw new Error(`ForgeContext must be used inside ForgeProvider`);
   return ctx;
 }

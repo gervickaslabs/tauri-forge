@@ -1,6 +1,9 @@
-import type { BaseCommandAdapter } from "@repo/forge/lib/api/types";
-
 import { invoke } from "@tauri-apps/api/core";
+
+export interface BaseCommandAdapter {
+  query<T = unknown>(key: string): Promise<T>;
+  mutate<T = unknown, Q = void>(key: string, payload?: Q): Promise<T>;
+}
 
 export class CommandAdapter implements BaseCommandAdapter {
   query<T = unknown>(key: string): Promise<T> {

@@ -9,6 +9,16 @@ import type {
   ForgeConfig,
 } from "./types";
 
+let cachedForge: Forge | null = null;
+
+export const getForge = async (options: InitOptions): Promise<Forge> => {
+  if (cachedForge) {
+    return cachedForge;
+  }
+
+  return (cachedForge = await new Forge().init(options));
+};
+
 export class Forge implements BaseForge {
   #config: SanitizedConfig = buildConfig();
 
@@ -68,9 +78,4 @@ export const buildConfig = (options?: ForgeConfig): SanitizedConfig => {
       enabled: options?.event?.enabled ?? true,
     },
   };
-};
-
-export const getForge = async (options: InitOptions): Promise<Forge> => {
-  const forge = new Forge();
-  return await forge.init(options);
 };

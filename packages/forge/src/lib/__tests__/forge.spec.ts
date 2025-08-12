@@ -34,7 +34,7 @@ describe("getForge", () => {
 
     const options = { config };
 
-    vi.spyOn(Forge.prototype, "init").mockImplementation(() => ({}) as any);
+    vi.spyOn(Forge.prototype, "init");
 
     const forgeInstance = await getForge(options);
     const forgeInstance2 = await getForge(options);
@@ -51,7 +51,7 @@ describe("getForge", () => {
 
     const options = { config };
 
-    vi.spyOn(Forge.prototype, "init").mockImplementation(() => ({}) as any);
+    vi.spyOn(Forge.prototype, "init");
 
     const forgeInstance = await getForge(options);
 

@@ -1,5 +1,6 @@
 {
-  "name": "tauri-forge",
+  "version": "0.0.1",
+  "name": "tauriforge",
   "private": true,
   "author": {
     "name": "welliton gervickas",

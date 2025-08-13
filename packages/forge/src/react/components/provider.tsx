@@ -1,11 +1,10 @@
 import { createContext, useContext } from "react";
 
-import { Forge } from "../../lib/forge";
-import { SanitizedConfig } from "../../lib/types";
+import { BaseForge, SanitizedConfig } from "../../lib/types";
 import { useForge } from "../hooks";
 
 export interface ForgeContextValue {
-  forge: Forge | null;
+  forge: BaseForge | null;
 }
 
 export const ForgeContext = createContext<ForgeContextValue>({

@@ -28,9 +28,12 @@ export interface SanitizedConfig {
 
 export interface InitOptions {
   config: SanitizedConfig;
+  /// @dev: todo
+  // onInit
 }
 
 export interface BaseForge {
+  init: (options: InitOptions) => Promise<BaseForge>;
   config: SanitizedConfig;
   stronghold: BaseStrongholdAdapter | null;
   command: BaseCommandAdapter | null;

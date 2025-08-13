@@ -1,4 +1,4 @@
-import { buildConfig } from "@repo/forge/lib/forge";
+import { buildConfig } from "@repo/forge/lib/config";
 
 export const config = buildConfig({
   command: {

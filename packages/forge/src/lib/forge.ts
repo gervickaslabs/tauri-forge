@@ -1,81 +1,30 @@
-import { BaseCommandAdapter, CommandAdapter } from "./command";
-import { BaseEventAdapter, EventAdapter } from "./event";
-import { BaseStrongholdAdapter, Stronghold } from "./stronghold";
+import { Forge } from ".";
+import type { InitOptions, BaseForge } from "./types";
 
-import type {
-  InitOptions,
-  BaseForge,
-  SanitizedConfig,
-  ForgeConfig,
-} from "./types";
+type ForgeConstructor = new () => BaseForge;
 
-let cachedForge: Forge | null = null;
+/**
+ * Cache Forge instances by their exact config object reference.
+ */
+const cached = new WeakMap<InitOptions["config"], BaseForge>();
 
-export const getForge = async (options: InitOptions): Promise<Forge> => {
-  if (cachedForge) {
-    return cachedForge;
+export const getForge = async (
+  options: InitOptions,
+  CustomForge?: ForgeConstructor,
+): Promise<BaseForge> => {
+  const { config } = options;
+
+  // Return from cache if same config object was used before
+  if (cached.has(config)) {
+    return cached.get(config)!;
   }
 
-  return (cachedForge = await new Forge().init(options));
-};
+  // Create and cache new Forge instance
+  const forge: BaseForge = CustomForge ? new CustomForge() : new Forge();
 
-export class Forge implements BaseForge {
-  #config: SanitizedConfig = buildConfig();
+  await forge.init(options);
 
-  #stronghold: BaseStrongholdAdapter | null = null;
+  cached.set(config, forge);
 
-  #command: BaseCommandAdapter | null = null;
-
-  #event: BaseEventAdapter | null = null;
-
-  async init(options: InitOptions) {
-    const { config } = options;
-
-    if (config?.stronghold?.enabled) {
-      this.#stronghold = new Stronghold();
-    }
-
-    if (config?.command?.enabled) {
-      this.#command = new CommandAdapter();
-    }
-
-    if (config?.event?.enabled) {
-      this.#event = new EventAdapter();
-    }
-
-    this.#config = config;
-
-    return this;
-  }
-
-  get config() {
-    return this.#config;
-  }
-
-  get stronghold() {
-    return this.#stronghold;
-  }
-
-  get event() {
-    return this.#event;
-  }
-
-  get command() {
-    return this.#command;
-  }
-}
-
-export const buildConfig = (options?: ForgeConfig): SanitizedConfig => {
-  return {
-    ...options,
-    stronghold: {
-      enabled: options?.stronghold?.enabled ?? true,
-    },
-    command: {
-      enabled: options?.command?.enabled ?? true,
-    },
-    event: {
-      enabled: options?.event?.enabled ?? true,
-    },
-  };
+  return forge;
 };

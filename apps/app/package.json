@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
+    "test": "mocha",
     "dev": "run-p dev:next dev:tauri",
     "build": "run-s build:next build:tauri",
     "dev:next": "next dev --turbopack --port 3000",
@@ -20,7 +21,7 @@
   "dependencies": {
     "@repo/forge": "workspace:*",
     "@repo/ui": "workspace:*",
-    "@tanstack/react-query": "^5.84.1",
+    "@tanstack/react-query": "^5.85.0",
     "@tauri-apps/api": "^2.7.0",
     "@tauri-apps/plugin-opener": "^2.4.0",
     "next": "^15.4.6",
@@ -32,15 +33,19 @@
     "@repo/tailwind-config": "workspace:*",
     "@tailwindcss/postcss": "^4.1.11",
     "@tauri-apps/cli": "^2.7.1",
-    "@types/node": "^24.2.0",
-    "@types/react": "19.1.9",
+    "@types/node": "^24.2.1",
+    "@types/react": "19.1.10",
     "@types/react-dom": "19.1.7",
     "eslint": "^9.32.0",
+    "husky": "^9.1.7",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.5.6",
     "serve": "^14.2.4",
     "tailwindcss": "^4.1.11",
-    "typescript": "5.9.2"
+    "typescript": "5.9.2",
+    "chai": "^5.2.1",
+    "mocha": "^11.7.1",
+    "selenium-webdriver": "^4.34.0"
   },
   "packageManager": "pnpm@10.13.1+sha512.37ebf1a5c7a30d5fabe0c5df44ee8da4c965ca0c5af3dbab28c3a1681b70a256218d05c81c9c0dcf767ef6b8551eb5b960042b9ed4300c59242336377e01cfad"
 }

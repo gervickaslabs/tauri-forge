@@ -9,7 +9,7 @@ const Home = () => {
   const handleCommandMutate = async () => {
     console.log(
       "command mutate",
-      await forge?.command?.mutate("greet", { name: "world" })
+      await forge?.command?.mutate("greet", { name: "world" }),
     );
   };
 
@@ -20,7 +20,9 @@ const Home = () => {
   return (
     <Card>
       <div>
-        <h1 className="text-4xl font-bold">Tauri forge</h1>
+        <h1 id="title" className="text-4xl font-bold">
+          Tauri forge
+        </h1>
         <h2>features</h2>
         <h2 className="text-3xl">Query and mutation using command</h2>
         <ul>

@@ -10,6 +10,7 @@
   },
   "private": true,
   "scripts": {
+    "test": "vitest run",
     "clean": "git clean -xdf .cache .turbo dist node_modules",
     "build": "tsc",
     "check-types": "tsc --noEmit",
@@ -26,8 +27,9 @@
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
-    "@types/react": "19.1.9",
-    "eslint": "^9.32.0",
-    "typescript": "5.9.2"
+    "@types/react": "19.1.10",
+    "eslint": "^9.33.0",
+    "typescript": "5.9.2",
+    "vitest": "^3.2.4"
   }
 }

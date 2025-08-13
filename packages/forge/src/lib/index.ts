@@ -5,6 +5,8 @@ import { BaseStrongholdAdapter, Stronghold } from "./stronghold";
 
 import type { InitOptions, BaseForge, SanitizedConfig } from "./types";
 
+/// todo: refactory module and tests
+
 export class Forge implements BaseForge {
   #config: SanitizedConfig = buildConfig();
 

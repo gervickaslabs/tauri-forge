@@ -5,15 +5,14 @@ import { useIsMounted } from "./utils/useIsMounted";
 
 export function useForge(config: SanitizedConfig) {
   const [forge, setForge] = useState<BaseForge | null>(null);
-
   const isMounted = useIsMounted();
 
   useEffect(() => {
-    if (isMounted()) {
-      getForge({
-        config,
-      }).then(setForge);
-    }
+    getForge({ config }).then((instance) => {
+      if (isMounted()) {
+        setForge(instance);
+      }
+    });
   }, [isMounted, config]);
 
   return forge;

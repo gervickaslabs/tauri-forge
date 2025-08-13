@@ -10,7 +10,7 @@ const cached = new WeakMap<InitOptions["config"], BaseForge>();
 
 export const getForge = async (
   options: InitOptions,
-  CustomForge?: ForgeConstructor
+  CustomForge?: ForgeConstructor,
 ): Promise<BaseForge> => {
   const { config } = options;
 

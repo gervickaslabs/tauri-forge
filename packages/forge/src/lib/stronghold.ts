@@ -59,7 +59,7 @@ export class Stronghold implements BaseStrongholdAdapter {
 
   async insertRecord<P = void, R = unknown>(
     key: string,
-    record?: P
+    record?: P,
   ): Promise<R> {
     const store = this.#client?.getStore();
 

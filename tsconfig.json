@@ -1,4 +1,11 @@
 {
   "extends": "./tsconfig.base.json",
-  "include": ["./scripts/**/*.ts"]
+  "compilerOptions": {
+    "composite": false,
+    "noEmit": true,
+    "baseUrl": ".",
+    "rootDir": "."
+  },
+  "references": [{ "path": "./packages/forge" }, { "path": "./packages/ui" }],
+  "include": ["${configDir}/src", "./scripts/**/*.ts"]
 }

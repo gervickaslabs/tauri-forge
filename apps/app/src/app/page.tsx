@@ -1,7 +1,7 @@
 "use client";
 
-import { Card } from "@repo/ui/components/card";
-import { useForgeContext } from "@repo/forge/react/components/provider";
+import { Card } from "@tauriforge/ui/components/card";
+import { useForgeContext } from "@tauriforge/forge/react/components/provider";
 
 const Home = () => {
   const { forge } = useForgeContext();
@@ -9,7 +9,7 @@ const Home = () => {
   const handleCommandMutate = async () => {
     console.log(
       "command mutate",
-      await forge?.command?.mutate("greet", { name: "world" }),
+      await forge?.command?.mutate("greet", { name: "world" })
     );
   };
 
@@ -18,23 +18,27 @@ const Home = () => {
   };
 
   return (
-    <Card>
-      <div>
-        <h1 id="title" className="text-4xl font-bold">
-          Tauri forge
-        </h1>
-        <h2>features</h2>
-        <h2 className="text-3xl">Query and mutation using command</h2>
-        <ul>
-          <li>
-            <button onClick={handCommandQuery}>greet query</button>
-          </li>
-          <li>
-            <button onClick={handleCommandMutate}>greet mutate</button>
-          </li>
-        </ul>
-      </div>
-    </Card>
+    <div className="p-6">
+      <Card className="p-6">
+        <div>
+          <h1 id="title" className="text-4xl font-bold">
+            Tauri forge
+          </h1>
+          <h2>features</h2>
+          <h2 className="text-3xl">Query and mutation using command</h2>
+          <Card className="p-6 m-6">
+            <ul>
+              <li>
+                <button onClick={handCommandQuery}>greet query</button>
+              </li>
+              <li>
+                <button onClick={handleCommandMutate}>greet mutate</button>
+              </li>
+            </ul>
+          </Card>
+        </div>
+      </Card>
+    </div>
   );
 };
 

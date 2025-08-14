@@ -1,7 +1,7 @@
 "use client";
 
-import { ForgeProvider } from "@repo/forge/react/components/provider";
-import config from "../../forge.config";
+import { ForgeProvider } from "@tauriforge/forge/react/components/provider";
+import config from "@forge-config";
 
 import "./globals.css";
 

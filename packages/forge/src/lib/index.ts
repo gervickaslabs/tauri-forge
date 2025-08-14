@@ -1,9 +1,21 @@
-import { BaseCommandAdapter, CommandAdapter } from "./command";
-import { buildConfig } from "./config";
-import { BaseEventAdapter, EventAdapter } from "./event";
-import { BaseStrongholdAdapter, Stronghold } from "./stronghold";
+import {
+  BaseCommandAdapter,
+  CommandAdapter,
+} from "@tauriforge/forge/lib/command";
+import { buildConfig } from "@tauriforge/forge/lib/config";
+import { BaseEventAdapter, EventAdapter } from "@tauriforge/forge/lib/event";
+import {
+  BaseStrongholdAdapter,
+  Stronghold,
+} from "@tauriforge/forge/lib/stronghold";
 
-import type { InitOptions, BaseForge, SanitizedConfig } from "./types";
+import type {
+  InitOptions,
+  BaseForge,
+  SanitizedConfig,
+} from "@tauriforge/forge/lib/types";
+
+/// todo: refactory module and tests
 
 export class Forge implements BaseForge {
   #config: SanitizedConfig = buildConfig();

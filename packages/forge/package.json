@@ -1,20 +1,24 @@
 {
-  "name": "@repo/forge",
+  "name": "@tauriforge/forge",
   "version": "0.0.1",
   "type": "module",
+  "sideEffects": false,
   "files": [
     "dist"
   ],
+  "main": "./src/lib/index.ts",
   "exports": {
-    "./*": "./dist/*.js"
+    "./*": "./src/*.ts",
+    "./lib/*": "./src/lib/*.ts",
+    "./react/hooks/*": "./src/react/hooks/*.ts",
+    "./react/hooks/utils/*": "./src/react/hooks/utils/*.ts",
+    "./react/components/*": "./src/react/components/*.tsx"
   },
   "private": true,
   "scripts": {
     "test": "vitest run",
     "clean": "git clean -xdf .cache .turbo dist node_modules",
-    "build": "tsc",
     "check-types": "tsc --noEmit",
-    "dev": "tsc --watch",
     "lint": "eslint src --max-warnings 0"
   },
   "peerDependencies": {
@@ -26,7 +30,8 @@
     "react": "^19.1.1"
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
+    "@tauriforge/eslint-config": "workspace:*",
+    "@types/node": "^24.2.1",
     "@types/react": "19.1.10",
     "eslint": "^9.33.0",
     "typescript": "5.9.2",

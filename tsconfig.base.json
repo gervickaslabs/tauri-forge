@@ -1,10 +1,16 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "jsx": "preserve",
     "declaration": true,
     "declarationMap": true,
     "esModuleInterop": true,
-    "incremental": false,
+    "incremental": true,
     "isolatedModules": true,
     "lib": ["es2022", "DOM", "DOM.Iterable"],
     "module": "NodeNext",
@@ -14,7 +20,31 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "ES2022"
+    "target": "ES2022",
+    "rootDir": "${configDir}/src",
+    "outDir": "${configDir}/dist",
+    "composite": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitOverride": true,
+    "allowJs": true,
+    "checkJs": false,
+    "emitDeclarationOnly": true,
+    "sourceMap": true,
+    "paths": {
+      "@tauriforge/forge": ["./packages/forge/src/index.ts"],
+      "@tauriforge/ui": ["./packages/ui/src/index.ts"]
+    }
   },
-  "exclude": ["node_modules"]
+  "include": ["${configDir}/src"],
+  "exclude": [
+    "${configDir}/.next/types/**/*.ts",
+    "${configDir}/out/next/types/**/*.ts",
+    "${configDir}/dist",
+    "${configDir}/build",
+    "${configDir}/out",
+    "${configDir}/temp",
+    "${configDir}/out",
+    "${configDir}/test",
+    "${configDir}/**/*.spec.ts"
+  ]
 }

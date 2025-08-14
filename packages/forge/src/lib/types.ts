@@ -1,6 +1,6 @@
-import { BaseCommandAdapter } from "./command";
-import { BaseEventAdapter } from "./event";
-import { BaseStrongholdAdapter } from "./stronghold";
+import { BaseCommandAdapter } from "@tauriforge/forge/lib/command";
+import { BaseEventAdapter } from "@tauriforge/forge/lib/event";
+import { BaseStrongholdAdapter } from "@tauriforge/forge/lib/stronghold";
 
 export interface ForgeConfig {
   stronghold?: {

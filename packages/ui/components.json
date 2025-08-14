@@ -11,11 +11,11 @@
     "prefix": ""
   },
   "aliases": {
-    "components": "@repo/ui/components",
-    "utils": "@repo/ui/lib/utils",
-    "ui": "@repo/ui/components",
-    "lib": "@repo/ui/lib",
-    "hooks": "@repo/ui/hooks"
+    "components": "@tauriforge/ui/components",
+    "utils": "@tauriforge/ui/lib/utils",
+    "ui": "@tauriforge/ui/components",
+    "lib": "@tauriforge/ui/lib",
+    "hooks": "@tauriforge/ui/hooks"
   },
   "iconLibrary": "lucide"
 }

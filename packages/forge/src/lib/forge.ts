@@ -1,5 +1,5 @@
-import { Forge } from ".";
-import type { InitOptions, BaseForge } from "./types";
+import { Forge } from "@tauriforge/forge/lib/index";
+import type { InitOptions, BaseForge } from "@tauriforge/forge/lib/types";
 
 type ForgeConstructor = new () => BaseForge;
 

@@ -1,23 +1,27 @@
 {
-  "name": "@repo/ui",
+  "name": "@tauriforge/ui",
   "version": "0.0.1",
   "sideEffects": [
-    "**/*.css"
+    "*.scss",
+    "*.css"
   ],
   "files": [
     "dist"
   ],
   "rootDir": "src",
   "exports": {
-    "./styles.css": "./dist/index.css",
-    "./*": "./dist/*.js"
+    "./styles.css": "./dist/styles.css",
+    "./*": "./src/*.ts",
+    "./components/*": "./src/components/*.tsx",
+    "./hooks/*": "./src/hooks/*.ts",
+    "./lib/*": "./src/lib/*.ts"
   },
   "license": "MIT",
   "scripts": {
-    "build:styles": "tailwindcss -i ./src/styles/globals.css -o ./dist/index.css",
+    "build:styles": "tailwindcss -i ./src/styles/globals.css -o ./dist/styles.css",
     "build:components": "tsc",
     "check-types": "tsc --noEmit",
-    "dev:styles": "tailwindcss -i ./src/styles/globals.css -o ./dist/index.css --watch",
+    "dev:styles": "tailwindcss -i ./src/styles/globals.css -o ./dist/styles.css --watch",
     "dev:components": "tsc --watch",
     "lint": "eslint src --max-warnings 0"
   },
@@ -25,8 +29,8 @@
     "react": "^19"
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/tailwind-config": "workspace:*",
+    "@tauriforge/eslint-config": "workspace:*",
+    "@tauriforge/tailwind-config": "workspace:*",
     "@tailwindcss/cli": "^4.1.11",
     "@types/react": "^19.1.10",
     "eslint": "^9.33.0",

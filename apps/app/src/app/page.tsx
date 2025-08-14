@@ -1,7 +1,7 @@
 "use client";
 
-import { Card } from "@repo/ui/components/card";
-import { useForgeContext } from "@repo/forge/react/components/provider";
+import { Card } from "@tauriforge/ui/components/card";
+import { useForgeContext } from "@tauriforge/forge/react/components/provider";
 
 const Home = () => {
   const { forge } = useForgeContext();

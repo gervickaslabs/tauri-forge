@@ -1,4 +1,4 @@
-import type { SanitizedConfig, ForgeConfig } from "./types";
+import type { SanitizedConfig, ForgeConfig } from "@tauriforge/forge/lib/types";
 
 export const buildConfig = (options?: ForgeConfig): SanitizedConfig => {
   return {

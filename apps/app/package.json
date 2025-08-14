@@ -19,8 +19,8 @@
     "check-types:next": "tsc --noEmit"
   },
   "dependencies": {
-    "@repo/forge": "workspace:*",
-    "@repo/ui": "workspace:*",
+    "@tauriforge/forge": "workspace:*",
+    "@tauriforge/ui": "workspace:*",
     "@tanstack/react-query": "^5.85.0",
     "@tauri-apps/api": "^2.7.0",
     "@tauri-apps/plugin-opener": "^2.4.0",
@@ -29,8 +29,8 @@
     "react-dom": "^19.1.1"
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/tailwind-config": "workspace:*",
+    "@tauriforge/eslint-config": "workspace:*",
+    "@tauriforge/tailwind-config": "workspace:*",
     "@tailwindcss/postcss": "^4.1.11",
     "@tauri-apps/cli": "^2.7.1",
     "@types/node": "^24.2.1",

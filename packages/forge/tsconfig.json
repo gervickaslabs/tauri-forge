@@ -1,14 +1,7 @@
 {
   "extends": "../../tsconfig.base.json",
+  "references": [{ "path": "../ui" }],
   "compilerOptions": {
-    "jsx": "react-jsx",
-    "outDir": "dist",
-    "target": "ES2022",
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
-    "removeComments": false,
-    "moduleResolution": "bundler"
-  },
-  "include": ["src"],
-  "exclude": ["dist", "build", "node_modules"]
+    "lib": ["ES2022"]
+  }
 }

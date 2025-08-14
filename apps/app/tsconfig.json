@@ -1,25 +1,26 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "allowJs": true,
-    "jsx": "preserve",
-    "noEmit": true
+    "noEmit": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "@forge-config": ["./src/forge.config.ts"],
+      "@tauriforge/*": ["../../packages/*"]
+    }
   },
-
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    "next-env.d.ts",
-    "next.config.js",
-    "./out/next/types/**/*.ts"
+  "references": [
+    {
+      "path": "../../packages/ui"
+    },
+    {
+      "path": "../../packages/forge"
+    }
   ],
-  "exclude": ["node_modules"]
+  "include": [
+    "${configDir}/src",
+    ".next/types/**/*.ts",
+    "./out/next/types/**/*.ts"
+  ]
 }

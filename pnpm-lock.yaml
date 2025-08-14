@@ -20,12 +20,6 @@ importers:
 
   apps/app:
     dependencies:
-      '@repo/forge':
-        specifier: workspace:*
-        version: link:../../packages/forge
-      '@repo/ui':
-        specifier: workspace:*
-        version: link:../../packages/ui
       '@tanstack/react-query':
         specifier: ^5.85.0
         version: 5.85.0(react@19.1.1)
@@ -35,6 +29,12 @@ importers:
       '@tauri-apps/plugin-opener':
         specifier: ^2.4.0
         version: 2.4.0
+      '@tauriforge/forge':
+        specifier: workspace:*
+        version: link:../../packages/forge
+      '@tauriforge/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
       next:
         specifier: ^15.4.6
         version: 15.4.6(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
@@ -45,18 +45,18 @@ importers:
         specifier: ^19.1.1
         version: 19.1.1(react@19.1.1)
     devDependencies:
-      '@repo/eslint-config':
-        specifier: workspace:*
-        version: link:../../packages/eslint-config
-      '@repo/tailwind-config':
-        specifier: workspace:*
-        version: link:../../packages/tailwind-config
       '@tailwindcss/postcss':
         specifier: ^4.1.11
         version: 4.1.11
       '@tauri-apps/cli':
         specifier: ^2.7.1
         version: 2.7.1
+      '@tauriforge/eslint-config':
+        specifier: workspace:*
+        version: link:../../packages/eslint-config
+      '@tauriforge/tailwind-config':
+        specifier: workspace:*
+        version: link:../../packages/tailwind-config
       '@types/node':
         specifier: ^24.2.1
         version: 24.2.1
@@ -145,9 +145,12 @@ importers:
         specifier: ^19.1.1
         version: 19.1.1
     devDependencies:
-      '@repo/eslint-config':
+      '@tauriforge/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
+      '@types/node':
+        specifier: ^24.2.1
+        version: 24.2.1
       '@types/react':
         specifier: 19.1.10
         version: 19.1.10
@@ -191,15 +194,15 @@ importers:
         specifier: ^1.3.6
         version: 1.3.6
     devDependencies:
-      '@repo/eslint-config':
-        specifier: workspace:*
-        version: link:../eslint-config
-      '@repo/tailwind-config':
-        specifier: workspace:*
-        version: link:../tailwind-config
       '@tailwindcss/cli':
         specifier: ^4.1.11
         version: 4.1.11
+      '@tauriforge/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@tauriforge/tailwind-config':
+        specifier: workspace:*
+        version: link:../tailwind-config
       '@types/react':
         specifier: ^19.1.10
         version: 19.1.10

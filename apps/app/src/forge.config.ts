@@ -1,15 +1,5 @@
-import { buildConfig } from "@tauriforge/forge/lib/config";
+import { buildConfig } from "@tauriforge/forge/config";
 
-export const config = buildConfig({
-  command: {
-    enabled: true,
-  },
-  event: {
-    enabled: true,
-  },
-  stronghold: {
-    enabled: true,
-  },
-});
+export const config = buildConfig();
 
 export default config;

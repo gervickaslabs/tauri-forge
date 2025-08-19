@@ -1,9 +1,10 @@
 import { createContext, useContext } from "react";
-import { BaseForge, SanitizedConfig } from "@tauriforge/forge/lib/types";
+import { SanitizedConfig } from "@tauriforge/forge/config/types";
+import { ForgeInstance } from "@tauriforge/forge/instance/types";
 import { useForge } from "@tauriforge/forge/react/hooks/useForge";
 
 export interface ForgeContextValue {
-  forge: BaseForge | null;
+  forge: ForgeInstance | null;
 }
 
 export const ForgeContext = createContext<ForgeContextValue>({

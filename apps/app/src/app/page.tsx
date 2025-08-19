@@ -3,18 +3,22 @@
 import { Card } from "@tauriforge/ui/components/card";
 import { useForgeContext } from "@tauriforge/forge/react/components/provider";
 
+import { BaseCommandAdapter } from "@tauriforge/forge/adapters/types";
+
 const Home = () => {
   const { forge } = useForgeContext();
+
+  const commandAdapter = forge?.getAdapter<BaseCommandAdapter>("command");
 
   const handleCommandMutate = async () => {
     console.log(
       "command mutate",
-      await forge?.command?.mutate("greet", { name: "world" })
+      await commandAdapter?.mutate("greet", { name: "world" })
     );
   };
 
   const handCommandQuery = async () => {
-    console.log("command query", await forge?.command?.query("greet_2"));
+    console.log("command query", await commandAdapter?.query("greet_2"));
   };
 
   return (

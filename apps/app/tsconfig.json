@@ -17,9 +17,5 @@
       "path": "../../packages/forge"
     }
   ],
-  "include": [
-    "${configDir}/src",
-    ".next/types/**/*.ts",
-    "./out/next/types/**/*.ts"
-  ]
+  "include": ["${configDir}", ".next/types/**/*.ts", "./out/next/types/**/*.ts"]
 }

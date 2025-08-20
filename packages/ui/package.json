@@ -12,9 +12,9 @@
   "exports": {
     "./styles.css": "./dist/styles.css",
     "./components/*": {
-      "default": "./src/components/*.tsx",
       "import": "./src/components/*.tsx",
-      "types": "./dist/components/*.d.ts"
+      "types": "./dist/components/*.d.ts",
+      "default": "./src/components/*.tsx"
     },
     "./hooks/*": "./src/hooks/*.ts",
     "./lib/*": "./src/lib/*.ts"

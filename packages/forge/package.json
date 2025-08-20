@@ -11,33 +11,33 @@
     ".": "./src/index.ts",
     "./instance": "./src/instance/index.ts",
     "./instance/*": {
-      "default": "./src/instance/*.ts",
       "import": "./src/instance/*.ts",
-      "types": "./dist/instance/*.d.ts"
+      "types": "./dist/instance/*.d.ts",
+      "default": "./src/instance/*.ts"
     },
     "./config": "./src/config/index.ts",
     "./config/*": {
-      "default": "./src/config/*.ts",
       "import": "./src/config/*.ts",
-      "types": "./dist/config/*.d.ts"
+      "types": "./dist/config/*.d.ts",
+      "default": "./src/config/*.ts"
     },
     "./adapters": "./src/adapters/index.ts",
     "./adapters/*": {
-      "default": "./src/adapters/*.ts",
       "import": "./src/adapters/*.ts",
-      "types": "./dist/adapters/*.d.ts"
+      "types": "./dist/adapters/*.d.ts",
+      "default": "./src/adapters/*.ts"
     },
     "./globals": "./src/globals/index.ts",
     "./globals/*": {
-      "default": "./src/globals/*.ts",
       "import": "./src/globals/*.ts",
-      "types": "./dist/globals/*.d.ts"
+      "types": "./dist/globals/*.d.ts",
+      "default": "./src/globals/*.ts"
     },
     "./plugins": "./src/plugins/index.ts",
     "./plugins/*": {
-      "default": "./src/plugins/*.ts",
       "import": "./src/plugins/*.ts",
-      "types": "./dist/plugins/*.d.ts"
+      "types": "./dist/plugins/*.d.ts",
+      "default": "./src/plugins/*.ts"
     },
     "./react/hooks/*": "./src/react/hooks/*.ts",
     "./react/hooks/utils/*": "./src/react/hooks/utils/*.ts",

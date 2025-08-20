@@ -6,8 +6,7 @@
     "noEmit": true,
     "paths": {
       "@/*": ["./src/*"],
-      "@forge-config": ["./src/forge.config.ts"],
-      "@tauriforge/*": ["../../packages/*"]
+      "@forge-config": ["./src/forge.config.ts"]
     }
   },
   "references": [

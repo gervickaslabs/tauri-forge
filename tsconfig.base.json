@@ -31,8 +31,8 @@
     "emitDeclarationOnly": true,
     "sourceMap": true,
     "paths": {
-      "@tauriforge/forge": ["./packages/forge/src/index.ts"],
-      "@tauriforge/ui": ["./packages/ui/src/index.ts"]
+      "@tauriforge/forge/*": ["./packages/forge/src/*"],
+      "@tauriforge/ui/*": ["./packages/ui/src/*"]
     }
   },
   "include": ["${configDir}/src"],

@@ -1,6 +1,9 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "strict": false
+    "strict": false,
+    "paths": {
+      "@tauriforge/ui/*": ["./src/*"]
+    }
   }
 }

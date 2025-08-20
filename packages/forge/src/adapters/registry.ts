@@ -9,11 +9,11 @@ export class AdapterRegistry {
   private instances = new Map<string, BaseAdapter>();
 
   register<TAdapter extends BaseAdapter, TConfig = unknown>(
-    factory: AdapterFactory<TAdapter, TConfig>
+    factory: AdapterFactory<TAdapter, TConfig>,
   ): void {
     if (this.factories.has(factory.name)) {
       throw new Error(
-        `Adapter factory '${factory.name}' is already registered`
+        `Adapter factory '${factory.name}' is already registered`,
       );
     }
 
@@ -22,7 +22,7 @@ export class AdapterRegistry {
 
   async resolve<TAdapter extends BaseAdapter, C extends BaseAdapterConfig>(
     name: string,
-    config: C
+    config: C,
   ): Promise<TAdapter> {
     if (this.instances.has(name)) {
       return this.instances.get(name) as TAdapter;
@@ -62,7 +62,7 @@ export class AdapterRegistry {
     const destroyPromises = Array.from(this.instances.values()).map((adapter) =>
       adapter.destroy().catch((error) => {
         console.error(`Error destroying adapter '${adapter.name}':`, error);
-      })
+      }),
     );
 
     await Promise.all(destroyPromises);

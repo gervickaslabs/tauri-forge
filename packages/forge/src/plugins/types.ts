@@ -1,5 +1,4 @@
 import type { BaseAdapter } from "@tauriforge/forge/adapters/types";
-import type { SanitizedConfig } from "@tauriforge/forge/config/types";
 import type { ForgeInstance } from "@tauriforge/forge/instance/types";
 
 export interface PluginConfig {
@@ -27,9 +26,4 @@ export interface Plugin<TConfig = Record<string, unknown>> {
   beforeAdapterInit?(adapterName: string, config: unknown): Promise<void>;
 
   afterAdapterInit?(adapterName: string, adapter: BaseAdapter): Promise<void>;
-
-  onConfigChange?(
-    newConfig: SanitizedConfig,
-    oldConfig: SanitizedConfig
-  ): Promise<void>;
 }

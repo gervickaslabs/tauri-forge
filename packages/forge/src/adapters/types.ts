@@ -16,38 +16,19 @@ export interface AdapterFactory<
   name: string;
   version: string;
   create(config: TConfig): Promise<TAdapter>;
-  validateConfig?(config: unknown): boolean;
+  validateConfig?(config: TConfig): boolean;
 }
 
 export interface BaseAdapterConfig {
   enabled?: boolean;
-  retryAttempts?: number;
-  timeout?: number;
   factory?: AdapterFactory<BaseAdapter, BaseAdapterConfig>;
 }
 
-export interface CommandAdapterConfig extends BaseAdapterConfig {
-  cache?: {
-    enabled?: boolean;
-    ttl?: number;
-    maxSize?: number;
-  };
-  deduplication?: {
-    enabled?: boolean;
-    window?: number;
-  };
-}
-export interface EventAdapterConfig extends BaseAdapterConfig {
-  buffer?: {
-    enabled?: boolean;
-    maxSize?: number;
-    flushInterval?: number;
-  };
-  persistence?: {
-    enabled?: boolean;
-    storageKey?: string;
-  };
-}
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+export interface CommandAdapterConfig extends BaseAdapterConfig {}
+
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+export interface EventAdapterConfig extends BaseAdapterConfig {}
 
 export interface SanitizedCommandConfig
   extends Required<Omit<CommandAdapterConfig, "enabled">> {
@@ -66,25 +47,18 @@ export interface BaseCommandAdapter extends BaseAdapter {
   mutate<T = unknown, P = unknown>(
     key: string,
     payload?: P,
-    options?: MutationOptions
+    options?: MutationOptions,
   ): Promise<T>;
-
-  batchQuery<T = unknown>(queries: BatchQuery[]): Promise<BatchResult<T>[]>;
-  batchMutate<T = unknown>(
-    mutations: BatchMutation[]
-  ): Promise<BatchResult<T>[]>;
 }
 
 export interface BaseEventAdapter extends BaseAdapter {
   on<T = unknown>(
     key: string,
     callback: EventCallback<T>,
-    options?: EventOptions
+    options?: EventOptions,
   ): Promise<UnlistenFn>;
-  emit<T = unknown>(key: string, data: T, options?: EmitOptions): Promise<void>;
 
-  removeAllListeners(key?: string): Promise<void>;
-  getActiveListeners(): string[];
+  emit<T = unknown>(key: string, data: T, options?: EmitOptions): Promise<void>;
 }
 
 export interface QueryOptions {
@@ -130,7 +104,7 @@ export interface BatchResult<T = unknown> {
 
 export type EventCallback<T = unknown> = (
   data: T,
-  metadata: EventMetadata
+  // metadata: EventMetadata
 ) => void;
 
 export interface EventMetadata {

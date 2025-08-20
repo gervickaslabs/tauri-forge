@@ -1,6 +1,6 @@
-@import "@tauriforge/tailwind-config";
-
 @import "tailwindcss";
+
+@import "@tauriforge/tailwind-config";
 
 @import "tw-animate-css";
 

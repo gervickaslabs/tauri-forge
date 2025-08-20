@@ -1,3 +1,5 @@
+export * from "@tauriforge/forge/plugins/types";
+
 import type { Plugin } from "@tauriforge/forge/plugins/types";
 import type { SanitizedConfig } from "@tauriforge/forge/config/types";
 import type { ForgeInstance } from "@tauriforge/forge/instance/types";
@@ -16,7 +18,7 @@ export class PluginManager {
 
   async initializeAll(
     forge: ForgeInstance,
-    config: SanitizedConfig
+    config: SanitizedConfig,
   ): Promise<void> {
     this.loadOrder = this.resolveDependencies();
 
@@ -67,7 +69,7 @@ export class PluginManager {
         } catch (error) {
           console.error(
             `Error in plugin hook '${hookName}' for plugin '${pluginName}':`,
-            error
+            error,
           );
         }
       }
@@ -84,7 +86,7 @@ export class PluginManager {
     const visit = (pluginName: string) => {
       if (visiting.has(pluginName)) {
         throw new Error(
-          `Circular dependency detected involving plugin '${pluginName}'`
+          `Circular dependency detected involving plugin '${pluginName}'`,
         );
       }
 
@@ -102,7 +104,7 @@ export class PluginManager {
       for (const dependency of plugin.dependencies || []) {
         if (!this.plugins.has(dependency)) {
           throw new Error(
-            `Plugin '${pluginName}' depends on '${dependency}' which is not registered`
+            `Plugin '${pluginName}' depends on '${dependency}' which is not registered`,
           );
         }
 

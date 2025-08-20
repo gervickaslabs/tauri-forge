@@ -1,6 +1,9 @@
+export * from "@tauriforge/forge/instance/types";
+
 import type { ForgeInstance } from "@tauriforge/forge/instance/types";
 import type { SanitizedConfig } from "@tauriforge/forge/config/types";
 import type { BaseAdapter } from "@tauriforge/forge/adapters/types";
+
 import { PluginManager } from "@tauriforge/forge/plugins";
 
 import { AdapterRegistry } from "@tauriforge/forge/adapters/registry";
@@ -44,6 +47,7 @@ export class Forge implements ForgeInstance {
     }
 
     try {
+      /// initializeDefaultAdapters
       this.adapters.register(this.config.adapters.command.factory);
       this.adapters.register(this.config.adapters.event.factory);
 
@@ -52,9 +56,7 @@ export class Forge implements ForgeInstance {
 
       this._initialized = true;
     } catch {
-      /**
-       * ...
-       */
+      /** todo */
     }
   }
 
@@ -87,7 +89,6 @@ export class Forge implements ForgeInstance {
     }
 
     try {
-      // Destroy adapters
       await this._adapters.destroyAll();
 
       this._destroyed = true;
@@ -101,7 +102,7 @@ export class Forge implements ForgeInstance {
   private ensureInitialized(): void {
     if (!this._initialized) {
       throw new Error(
-        "Forge instance not initialized. Call initialize() first."
+        "Forge instance not initialized. Call initialize() first.",
       );
     }
     if (this._destroyed) {
@@ -113,21 +114,39 @@ export class Forge implements ForgeInstance {
     const initPromises = this._config.activeAdapters.map(
       async (adapterName) => {
         try {
-          /** todo */
+          await this._plugins.executeHook(
+            "beforeAdapterInit",
+            adapterName,
+            this._config.adapters[
+              adapterName as keyof typeof this._config.adapters
+            ],
+          );
+
+          const adapter = await this._adapters.resolve(
+            adapterName,
+            this._config.adapters[
+              adapterName as keyof typeof this._config.adapters
+            ],
+          );
+
+          await this._plugins.executeHook(
+            "afterAdapterInit",
+            adapterName,
+            adapter,
+          );
         } catch {
           throw new Error(`Failed to initialize adapter '${adapterName}'`);
         }
-      }
+      },
     );
 
     await Promise.all(initPromises);
   }
 
   private async initializePlugins(): Promise<void> {
-    // Register plugins from config
     for (const pluginConfig of this._config.plugins) {
       if (pluginConfig.enabled) {
-        /// todo
+        /** todo */
       }
     }
 

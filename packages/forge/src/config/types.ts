@@ -29,6 +29,7 @@ export interface SanitizedConfig {
   adapters: {
     command: SanitizedCommandConfig;
     event: SanitizedEventConfig;
+    /// change it to [key]: or array Factory and create a runner to initialize it
   };
 
   global: SanitizedGlobalConfig;

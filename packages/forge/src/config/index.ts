@@ -1,3 +1,5 @@
+export * from "@tauriforge/forge/config/types";
+
 import merge from "lodash/merge.js";
 
 import type { Config, SanitizedConfig } from "@tauriforge/forge/config/types";
@@ -14,33 +16,11 @@ import { EventAdapterFactory } from "@tauriforge/forge/adapters/event";
 
 export const DEFAULT_COMMAND_CONFIG: SanitizedCommandConfig = {
   enabled: true,
-  retryAttempts: 3,
-  timeout: 5000,
-  cache: {
-    enabled: true,
-    ttl: 300000,
-    maxSize: 1000,
-  },
-  deduplication: {
-    enabled: true,
-    window: 100,
-  },
   factory: CommandAdapterFactory,
 };
 
 export const DEFAULT_EVENT_CONFIG: SanitizedEventConfig = {
   enabled: true,
-  retryAttempts: 3,
-  timeout: 5000,
-  buffer: {
-    enabled: true,
-    maxSize: 100,
-    flushInterval: 1000,
-  },
-  persistence: {
-    enabled: false,
-    storageKey: "forge-events",
-  },
   factory: EventAdapterFactory,
 };
 
@@ -53,11 +33,11 @@ export function buildConfig(customConfig?: Config): SanitizedConfig {
     adapters: {
       command: buildAdapterConfig(
         DEFAULT_COMMAND_CONFIG,
-        customConfig?.adapters?.command
+        customConfig?.adapters?.command,
       ),
       event: buildAdapterConfig(
         DEFAULT_EVENT_CONFIG,
-        customConfig?.adapters?.event
+        customConfig?.adapters?.event,
       ),
     },
 
@@ -87,7 +67,7 @@ export function buildConfig(customConfig?: Config): SanitizedConfig {
 
 function buildAdapterConfig<T extends { enabled: boolean }, C = unknown>(
   defaultConfig: T,
-  customConfig: C
+  customConfig: C,
 ): T {
   if (customConfig === false) {
     return { ...defaultConfig, enabled: false };

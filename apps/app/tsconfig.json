@@ -4,8 +4,8 @@
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "noEmit": true,
+    "rootDir": ".",
     "paths": {
-      "@/*": ["./src/*"],
       "@forge-config": ["./src/forge.config.ts"]
     }
   },

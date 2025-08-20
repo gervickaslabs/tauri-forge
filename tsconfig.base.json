@@ -31,6 +31,7 @@
     "emitDeclarationOnly": true,
     "sourceMap": true,
     "paths": {
+      "@forge-config": ["./apps/app/src/forge.config.ts"],
       "@tauriforge/forge/*": ["./packages/forge/src/*"],
       "@tauriforge/ui/*": ["./packages/ui/src/*"]
     }

@@ -4,7 +4,6 @@ import type {
   AdapterFactory,
   BaseCommandAdapter,
   SanitizedCommandConfig,
-  CacheEntry,
   QueryOptions,
   MutationOptions,
 } from "@tauriforge/forge/adapters/types";
@@ -12,19 +11,13 @@ import type {
 export class CommandAdapter implements BaseCommandAdapter {
   readonly name = "command";
   readonly version = "1.0.0";
-
   private config!: SanitizedCommandConfig;
-  private cache = new Map<string, CacheEntry>();
-  private pendingQueries = new Map<string, Promise<unknown>>();
 
   async initialize(config: SanitizedCommandConfig): Promise<void> {
     this.config = config;
   }
 
-  async destroy(): Promise<void> {
-    this.cache.clear();
-    this.pendingQueries.clear();
-  }
+  async destroy(): Promise<void> {}
 
   async healthCheck(): Promise<boolean> {
     try {
@@ -41,7 +34,7 @@ export class CommandAdapter implements BaseCommandAdapter {
   async mutate<T = unknown, P = unknown>(
     key: string,
     payload?: P,
-    _options?: MutationOptions,
+    _options?: MutationOptions
   ): Promise<T> {
     return invoke<T>(key, payload as Record<string, unknown>);
   }

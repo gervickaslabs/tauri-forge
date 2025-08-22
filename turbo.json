@@ -1,7 +1,7 @@
 {
   "$schema": "https://turborepo.com/schema.json",
   "ui": "tui",
-  "globalPassThroughEnv": ["NODE_ENV", "TAURI_DEV_HOST"],
+  "globalEnv": ["NODE_ENV", "TAURI_DEV_HOST"],
   "globalDependencies": [".env"],
   "tasks": {
     "build": {

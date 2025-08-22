@@ -11,7 +11,11 @@
   "rootDir": "src",
   "exports": {
     "./styles.css": "./dist/styles.css",
-    "./components/*": "./src/components/*.tsx",
+    "./components/*": {
+      "import": "./src/components/*.tsx",
+      "types": "./dist/components/*.d.tsx",
+      "default": "./src/components/*.tsx"
+    },
     "./hooks/*": "./src/hooks/*.ts",
     "./lib/*": "./src/lib/*.ts"
   },

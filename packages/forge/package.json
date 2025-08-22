@@ -6,47 +6,76 @@
   "files": [
     "dist"
   ],
-  "main": "./src/lib/index.ts",
+  "main": "./src/index.ts",
+  "types": "./dist/types.d.ts",
   "exports": {
-    ".": "./src/index.ts",
-    "./instance": "./src/instance/index.ts",
+    ".": {
+      "import": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "default": "./src/index.ts"
+    },
     "./instance/*": {
       "import": "./src/instance/*.ts",
       "types": "./dist/instance/*.d.ts",
       "default": "./src/instance/*.ts"
     },
-    "./config": "./src/config/index.ts",
+    "./instance": {
+      "import": "./src/instance/index.ts",
+      "types": "./dist/instance/index.d.ts",
+      "default": "./src/instance/index.ts"
+    },
     "./config/*": {
       "import": "./src/config/*.ts",
       "types": "./dist/config/*.d.ts",
       "default": "./src/config/*.ts"
     },
-    "./adapters": "./src/adapters/index.ts",
+    "./config": {
+      "import": "./src/config/index.ts",
+      "types": "./dist/config/index.d.ts",
+      "default": "./src/config/index.ts"
+    },
     "./adapters/*": {
       "import": "./src/adapters/*.ts",
       "types": "./dist/adapters/*.d.ts",
       "default": "./src/adapters/*.ts"
     },
-    "./globals": "./src/globals/index.ts",
+    "./adapters": {
+      "import": "./src/adapters/index.ts",
+      "types": "./dist/adapters/index.d.ts",
+      "default": "./src/adapters/index.ts"
+    },
     "./globals/*": {
       "import": "./src/globals/*.ts",
       "types": "./dist/globals/*.d.ts",
       "default": "./src/globals/*.ts"
     },
-    "./plugins": "./src/plugins/index.ts",
+    "./globals": {
+      "import": "./src/globals/index.ts",
+      "types": "./dist/globals/index.d.ts",
+      "default": "./src/globals/index.ts"
+    },
     "./plugins/*": {
       "import": "./src/plugins/*.ts",
       "types": "./dist/plugins/*.d.ts",
       "default": "./src/plugins/*.ts"
     },
+    "./plugins": {
+      "import": "./src/plugins/index.ts",
+      "types": "./dist/plugins/index.d.ts",
+      "default": "./src/plugins/index.ts"
+    },
     "./react/hooks/*": "./src/react/hooks/*.ts",
     "./react/hooks/utils/*": "./src/react/hooks/utils/*.ts",
-    "./react/components/*": "./src/react/components/*.tsx"
+    "./react/components/*": {
+      "import": "./src/react/components/*.tsx",
+      "types": "./dist/react/components/*.d.ts",
+      "default": "./src/react/components/*.tsx"
+    }
   },
   "private": true,
   "scripts": {
     "test": "vitest run",
-    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "clean": "git clean -xdf .cache .turbo dist node_modules *.tsbuildinfo",
     "check-types": "tsc --noEmit",
     "lint": "eslint src --max-warnings 0",
     "dev": "tsc --watch",

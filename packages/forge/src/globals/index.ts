@@ -1,1 +1,4 @@
-export * from "@tauriforge/forge/globals/types";
+export type {
+  GlobalConfig,
+  SanitizedGlobalConfig,
+} from "@tauriforge/forge/globals/types";

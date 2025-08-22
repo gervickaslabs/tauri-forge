@@ -5,6 +5,7 @@
     "moduleResolution": "Bundler",
     "noEmit": true,
     "rootDir": ".",
+    "baseUrl": ".",
     "paths": {
       "@forge-config": ["./src/forge.config.ts"]
     }
@@ -17,5 +18,10 @@
       "path": "../../packages/forge"
     }
   ],
-  "include": ["${configDir}", ".next/types/**/*.ts", "./out/next/types/**/*.ts"]
+  "include": [
+    "${configDir}",
+    "${configDir}/src",
+    ".next/types/**/*.ts",
+    "./out/next/types/**/*.ts"
+  ]
 }

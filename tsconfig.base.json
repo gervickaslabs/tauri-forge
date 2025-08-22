@@ -29,15 +29,11 @@
     "allowJs": true,
     "checkJs": false,
     "emitDeclarationOnly": true,
-    "sourceMap": true,
-    "paths": {
-      "@forge-config": ["./apps/app/src/forge.config.ts"],
-      "@tauriforge/forge/*": ["./packages/forge/src/*"],
-      "@tauriforge/ui/*": ["./packages/ui/src/*"]
-    }
+    "sourceMap": true
   },
   "include": ["${configDir}/src"],
   "exclude": [
+    "${configDir}/src-tauri",
     "${configDir}/.next/types/**/*.ts",
     "${configDir}/out/next/types/**/*.ts",
     "${configDir}/dist",

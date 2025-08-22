@@ -1,6 +1,6 @@
 import { Forge } from "@tauriforge/forge/instance";
 
-import type { SanitizedConfig } from "@tauriforge/forge/config/types";
+import type { SanitizedConfig } from "@tauriforge/forge/config";
 
 const cached = new WeakMap<SanitizedConfig, Forge>();
 

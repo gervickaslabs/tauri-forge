@@ -1,4 +1,5 @@
 "use client";
+
 import { Card } from "@tauriforge/ui/components/card";
 import { useForgeContext } from "@tauriforge/forge/react/components/provider";
 
@@ -9,12 +10,10 @@ const Home = () => {
 
   const commandAdapter = forge?.getAdapter<BaseCommandAdapter>("command");
 
-  // commandAdapter?.version
-
   const handleCommandMutate = async () => {
     console.log(
       "command mutate",
-      await commandAdapter?.mutate("greet", { name: "world" })
+      await commandAdapter?.mutate("greet", { name: "world" }),
     );
   };
 

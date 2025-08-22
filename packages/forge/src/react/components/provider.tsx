@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { SanitizedConfig } from "@tauriforge/forge/config/types";
+import { SanitizedConfig } from "@tauriforge/forge/config";
 import { Forge } from "@tauriforge/forge/instance";
 import { useForge } from "@tauriforge/forge/react/hooks/useForge";
 

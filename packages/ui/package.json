@@ -11,16 +11,13 @@
   "rootDir": "src",
   "exports": {
     "./styles.css": "./dist/styles.css",
-    "./components/*": {
-      "import": "./src/components/*.tsx",
-      "types": "./dist/components/*.d.ts",
-      "default": "./src/components/*.tsx"
-    },
+    "./components/*": "./src/components/*.tsx",
     "./hooks/*": "./src/hooks/*.ts",
     "./lib/*": "./src/lib/*.ts"
   },
   "license": "MIT",
   "scripts": {
+    "clean": "git clean -xdf .cache .turbo dist node_modules *.tsbuildinfo",
     "dev:styles": "tailwindcss -i ./src/styles/globals.css -o ./dist/styles.css --watch",
     "dev:components": "tsc --watch",
     "build:styles": "tailwindcss -i ./src/styles/globals.css -o ./dist/styles.css",

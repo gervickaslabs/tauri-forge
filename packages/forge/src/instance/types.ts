@@ -1,7 +1,6 @@
-import type { BaseAdapter } from "@tauriforge/forge/adapters/types";
-import type { SanitizedConfig } from "@tauriforge/forge/config/types";
-
-import { AdapterRegistry } from "@tauriforge/forge/adapters/registry";
+import type { BaseAdapter } from "@tauriforge/forge/adapters";
+import type { SanitizedConfig } from "@tauriforge/forge/config";
+import { AdapterRegistry } from "@tauriforge/forge/adapters";
 
 export interface ForgeInstance {
   config: SanitizedConfig;

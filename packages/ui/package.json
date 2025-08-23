@@ -11,16 +11,22 @@
   "rootDir": "src",
   "exports": {
     "./styles.css": "./dist/styles.css",
-    "./*": "./src/*.ts",
-    "./components/*": "./src/components/*.tsx",
+    "./components/*": {
+      "import": "./src/components/*.tsx",
+      "types": "./dist/components/*.d.ts",
+      "default": "./src/components/*.tsx"
+    },
     "./hooks/*": "./src/hooks/*.ts",
     "./lib/*": "./src/lib/*.ts"
   },
   "license": "MIT",
   "scripts": {
-    "build:styles": "tailwindcss -i ./src/styles/globals.css -o ./dist/styles.css",
-    "check-types": "tsc --noEmit",
+    "clean": "git clean -xdf .cache .turbo dist node_modules *.tsbuildinfo",
     "dev:styles": "tailwindcss -i ./src/styles/globals.css -o ./dist/styles.css --watch",
+    "dev:components": "tsc --watch",
+    "build:styles": "tailwindcss -i ./src/styles/globals.css -o ./dist/styles.css",
+    "build:components": "tsc",
+    "check-types": "tsc --noEmit",
     "lint": "eslint src --max-warnings 0"
   },
   "peerDependencies": {

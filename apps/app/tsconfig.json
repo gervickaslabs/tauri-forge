@@ -4,10 +4,10 @@
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "noEmit": true,
+    "rootDir": ".",
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "@forge-config": ["./src/forge.config.ts"],
-      "@tauriforge/*": ["../../packages/*"]
+      "@forge-config": ["./src/forge.config.ts"]
     }
   },
   "references": [
@@ -19,6 +19,7 @@
     }
   ],
   "include": [
+    "${configDir}",
     "${configDir}/src",
     ".next/types/**/*.ts",
     "./out/next/types/**/*.ts"

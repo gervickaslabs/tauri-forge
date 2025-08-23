@@ -1,9 +1,10 @@
 import { createContext, useContext } from "react";
-import { BaseForge, SanitizedConfig } from "@tauriforge/forge/lib/types";
+import { SanitizedConfig } from "@tauriforge/forge/config";
+import { Forge } from "@tauriforge/forge/instance";
 import { useForge } from "@tauriforge/forge/react/hooks/useForge";
 
 export interface ForgeContextValue {
-  forge: BaseForge | null;
+  forge: Forge | null;
 }
 
 export const ForgeContext = createContext<ForgeContextValue>({
@@ -18,6 +19,8 @@ export const ForgeProvider = ({
   children: React.ReactNode;
 }) => {
   const forge = useForge(config);
+
+  // forge?.config.
 
   return (
     <ForgeContext.Provider value={{ forge }}>{children}</ForgeContext.Provider>

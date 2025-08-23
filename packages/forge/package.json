@@ -6,20 +6,90 @@
   "files": [
     "dist"
   ],
-  "main": "./src/lib/index.ts",
+  "main": "./src/index.ts",
+  "types": "./dist/types.ts",
   "exports": {
     "./*": "./src/*.ts",
-    "./lib/*": "./src/lib/*.ts",
-    "./react/hooks/*": "./src/react/hooks/*.ts",
+    ".": {
+      "import": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "default": "./src/index.ts"
+    },
+    "./instance": {
+      "import": "./src/instance.ts",
+      "types": "./dist/instance.d.ts",
+      "default": "./src/instance.ts"
+    },
+    "./logger/*": {
+      "import": "./src/logger/*.ts",
+      "types": "./dist/logger/*.d.ts",
+      "default": "./src/logger/*.ts"
+    },
+    "./logger": {
+      "import": "./src/logger/index.ts",
+      "types": "./dist/logger/index.d.ts",
+      "default": "./src/logger/index.ts"
+    },
+    "./config/*": {
+      "import": "./src/config/*.ts",
+      "types": "./dist/config/*.d.ts",
+      "default": "./src/config/*.ts"
+    },
+    "./config": {
+      "import": "./src/config/index.ts",
+      "types": "./dist/config/index.d.ts",
+      "default": "./src/config/index.ts"
+    },
+    "./adapters/*": {
+      "import": "./src/adapters/*.ts",
+      "types": "./dist/adapters/*.d.ts",
+      "default": "./src/adapters/*.ts"
+    },
+    "./adapters": {
+      "import": "./src/adapters/index.ts",
+      "types": "./dist/adapters/index.d.ts",
+      "default": "./src/adapters/index.ts"
+    },
+    "./globals/*": {
+      "import": "./src/globals/*.ts",
+      "types": "./dist/globals/*.d.ts",
+      "default": "./src/globals/*.ts"
+    },
+    "./globals": {
+      "import": "./src/globals/index.ts",
+      "types": "./dist/globals/index.d.ts",
+      "default": "./src/globals/index.ts"
+    },
+    "./react/hooks/*": {
+      "import": "./src/react/hooks/*.ts",
+      "types": "./dist/react/hooks/*.d.ts",
+      "default": "./src/react/hooks/*.ts"
+    },
+    "./react/hooks/useForge": {
+      "import": "./src/react/hooks/useForge.ts",
+      "types": "./dist/react/hooks/useForge.d.ts",
+      "default": "./src/react/hooks/useForge.ts"
+    },
     "./react/hooks/utils/*": "./src/react/hooks/utils/*.ts",
-    "./react/components/*": "./src/react/components/*.tsx"
+    "./react/components/provider": {
+      "import": "./src/react/components/provider.tsx",
+      "types": "./dist/react/components/provider.d.ts",
+      "default": "./src/react/components/provider.tsx"
+    },
+    "./react/components/*": {
+      "import": "./src/react/components/*.tsx",
+      "types": "./dist/react/components/*.d.ts",
+      "default": "./src/react/components/*.tsx"
+    }
   },
   "private": true,
   "scripts": {
     "test": "vitest run",
-    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "clean": "git clean -xdf .cache .turbo dist node_modules *.tsbuildinfo",
     "check-types": "tsc --noEmit",
-    "lint": "eslint src --max-warnings 0"
+    "lint": "eslint src --max-warnings 0",
+    "dev": "tsc --watch",
+    "build": "tsc"
   },
   "peerDependencies": {
     "react": "^19"
@@ -27,10 +97,12 @@
   "dependencies": {
     "@tauri-apps/api": "^2.7.0",
     "@tauri-apps/plugin-stronghold": "^2.3.0",
+    "lodash": "^4.17.21",
     "react": "^19.1.1"
   },
   "devDependencies": {
     "@tauriforge/eslint-config": "workspace:*",
+    "@types/lodash": "^4.17.20",
     "@types/node": "^24.2.1",
     "@types/react": "19.1.10",
     "eslint": "^9.33.0",

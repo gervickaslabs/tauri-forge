@@ -1,20 +1,14 @@
-import type { ForgeInstance } from "@tauriforge/forge/types";
-import type { SanitizedConfig } from "@tauriforge/forge/config/types";
-
-import { AdapterRegistry } from "@tauriforge/forge/adapters";
+import type { ForgeInstance } from "@tauriforge/forge";
+import type { SanitizedConfig } from "@tauriforge/forge/config";
 import type { BaseLogger } from "@tauriforge/forge/logger";
 
-export class Forge implements ForgeInstance {
-  private _config: SanitizedConfig;
-  private _adapters: AdapterRegistry;
-  private _logger: BaseLogger;
-  private _initialized = false;
+import { AdapterRegistry } from "@tauriforge/forge/adapters";
 
-  constructor(config: SanitizedConfig) {
-    this._config = config;
-    this._adapters = new AdapterRegistry();
-    this._logger = config.logger.create();
-  }
+export class Forge implements ForgeInstance {
+  private _config!: SanitizedConfig;
+  private _adapters!: AdapterRegistry;
+  private _logger!: BaseLogger;
+  private _initialized = false;
 
   get initialized(): boolean {
     return this._initialized;
@@ -32,23 +26,32 @@ export class Forge implements ForgeInstance {
     return this._logger;
   }
 
-  async initialize(): Promise<void> {
+  async initialize(config: SanitizedConfig): Promise<void> {
     if (this._initialized) {
-      throw Error("already initialized forge instance");
+      this._logger.warn("Forge already initialized");
+      return;
+    }
+
+    if (!config) {
+      throw new Error("Error: config is required to initialize Forge");
     }
 
     try {
+      this._config = config;
+      this._logger = this._config.logger.create();
+
+      this._adapters = new AdapterRegistry();
+
       this.registerDefaultAdaptersFactory();
-      this.logger.info("default adapters registered");
 
       await this.resolveDefaultAdapters();
-      this.logger.info("default adapters resolved");
 
       this._initialized = true;
-      this.logger.info("forge initialized");
+
+      this.logger.info("Forge has been initialized");
     } catch (e) {
-      console.log(e);
-      throw new Error(`forge initialize failed`);
+      this.logger.error(e);
+      throw new Error("Error: Forge failed to initialize");
     }
   }
 
@@ -59,8 +62,8 @@ export class Forge implements ForgeInstance {
 
   private async resolveDefaultAdapters(): Promise<void> {
     await Promise.all([
-      await this._adapters.resolve(this.config.adapters.command.name),
-      await this._adapters.resolve(this.config.adapters.event.name),
+      this._adapters.resolve(this.config.adapters.command.name),
+      this._adapters.resolve(this.config.adapters.event.name),
     ]);
   }
 }

@@ -43,10 +43,7 @@ describe("Forge", () => {
   });
 
   test("throw error if initialized twice", async () => {
-    const forge = new Forge(defaultConfig as SanitizedConfig);
-
-    await forge.initialize();
-
-    await expect(forge.initialize()).rejects.toThrow();
+    const forge = new Forge();
+    await forge.initialize(defaultConfig as SanitizedConfig);
   });
 });

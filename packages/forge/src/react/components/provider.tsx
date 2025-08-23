@@ -20,6 +20,8 @@ export const ForgeProvider = ({
 }) => {
   const forge = useForge(config);
 
+  // forge?.config.
+
   return (
     <ForgeContext.Provider value={{ forge }}>{children}</ForgeContext.Provider>
   );

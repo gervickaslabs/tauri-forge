@@ -2,26 +2,15 @@ import { emit, listen } from "@tauri-apps/api/event";
 import type { UnlistenFn } from "@tauri-apps/api/event";
 
 import type {
-  AdapterFactory,
+  BaseAdapterFactory,
   BaseEventAdapter,
-  SanitizedEventConfig,
   EventCallback,
 } from "@tauriforge/forge/adapters/types";
 
 export class EventAdapter implements BaseEventAdapter {
   readonly name = "event";
 
-  private config!: SanitizedEventConfig;
-
-  async initialize(config: SanitizedEventConfig): Promise<void> {
-    this.config = config;
-  }
-
-  async destroy(): Promise<void> {}
-
-  async healthCheck(): Promise<boolean> {
-    return true;
-  }
+  async initialize(): Promise<void> {}
 
   async on<T = unknown>(
     key: string,
@@ -35,15 +24,9 @@ export class EventAdapter implements BaseEventAdapter {
   }
 }
 
-export const EventAdapterFactory: AdapterFactory<
-  EventAdapter,
-  SanitizedEventConfig
-> = {
+export const EventAdapterFactory: BaseAdapterFactory<BaseEventAdapter> = {
   name: "event",
-  async create(_: SanitizedEventConfig): Promise<EventAdapter> {
+  async create(): Promise<EventAdapter> {
     return new EventAdapter();
-  },
-  validateConfig(config: SanitizedEventConfig): boolean {
-    return typeof config === "object" && config !== null;
   },
 };

@@ -1,132 +1,26 @@
 import type { UnlistenFn } from "@tauri-apps/api/event";
 
 export interface BaseAdapter {
+  initialize(): Promise<void>;
+}
+
+export interface BaseAdapterFactory<TAdapter extends BaseAdapter> {
   readonly name: string;
-
-  initialize(config: unknown): Promise<void>;
-  destroy(): Promise<void>;
-  healthCheck(): Promise<boolean>;
-}
-
-export interface AdapterFactory<
-  TAdapter extends BaseAdapter,
-  TConfig = unknown,
-> {
-  name: string;
-  create(config: TConfig): Promise<TAdapter>;
-  validateConfig?(config: TConfig): boolean;
-}
-
-export interface BaseAdapterConfig {
-  enabled?: boolean;
-  factory?: AdapterFactory<BaseAdapter, BaseAdapterConfig>;
-}
-
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-export interface CommandAdapterConfig extends BaseAdapterConfig {}
-
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-export interface EventAdapterConfig extends BaseAdapterConfig {}
-
-export interface SanitizedCommandConfig
-  extends Required<Omit<CommandAdapterConfig, "enabled">> {
-  enabled: true;
-  factory: AdapterFactory<BaseAdapter, CommandAdapterConfig>;
-}
-
-export interface SanitizedEventConfig
-  extends Required<Omit<EventAdapterConfig, "enabled">> {
-  enabled: true;
-  factory: AdapterFactory<BaseAdapter, EventAdapterConfig>;
+  create(): Promise<TAdapter>;
 }
 
 export interface BaseCommandAdapter extends BaseAdapter {
-  query<T = unknown>(
-    key: string,
-    // options?: QueryOptions
-  ): Promise<T>;
-  mutate<T = unknown, P = unknown>(
-    key: string,
-    payload?: P,
-    // options?: MutationOptions
-  ): Promise<T>;
+  query<T = unknown>(key: string): Promise<T>;
+  mutate<T = unknown, P = unknown>(key: string, payload?: P): Promise<T>;
 }
 
 export interface BaseEventAdapter extends BaseAdapter {
-  on<T = unknown>(
-    key: string,
-    callback: EventCallback<T>,
-    // options?: EventOptions,
-  ): Promise<UnlistenFn>;
-
-  emit<T = unknown>(
-    key: string,
-    data: T,
-    // options?: EmitOptions
-  ): Promise<void>;
+  on<T = unknown>(key: string, callback: EventCallback<T>): Promise<UnlistenFn>;
+  emit<T = unknown>(key: string, data: T): Promise<void>;
 }
 
-// export interface QueryOptions {
-//   timeout?: number;
-//   cache?: boolean;
-//   retries?: number;
-// }
+export type EventCallback<T = unknown> = (data: T) => void;
 
-// export interface MutationOptions extends QueryOptions {
-//   optimistic?: boolean;
-//   rollback?: boolean;
-// }
+export type BaseCommandAdapterFactory = BaseAdapterFactory<BaseCommandAdapter>;
 
-// export interface EventOptions {
-//   once?: boolean;
-//   priority?: number;
-// }
-
-// export interface EmitOptions {
-//   broadcast?: boolean;
-//   persist?: boolean;
-// }
-
-// export interface BatchQuery {
-//   id: string;
-//   key: string;
-//   options?: QueryOptions;
-// }
-
-// export interface BatchMutation {
-//   id: string;
-//   key: string;
-//   payload?: unknown;
-//   options?: MutationOptions;
-// }
-
-// export interface BatchResult<T = unknown> {
-//   id: string;
-//   success: boolean;
-//   data?: T;
-//   error?: string;
-// }
-
-export type EventCallback<T = unknown> = (
-  data: T,
-  // metadata: EventMetadata
-) => void;
-
-// export interface EventMetadata {
-//   timestamp: number;
-//   source: string;
-//   sequence?: number;
-// }
-
-// export interface BufferedEvent {
-//   key: string;
-//   data: unknown;
-//   timestamp: number;
-//   options: EmitOptions;
-// }
-
-// export interface CacheEntry {
-//   data: unknown;
-//   createdAt: number;
-//   expiresAt: number;
-// }
+export type BaseEventAdapterFactory = BaseAdapterFactory<BaseEventAdapter>;

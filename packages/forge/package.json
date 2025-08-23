@@ -7,22 +7,28 @@
     "dist"
   ],
   "main": "./src/index.ts",
-  "types": "./dist/types.d.ts",
+  "types": "./dist/types.ts",
   "exports": {
+    "./*": "./src/*.ts",
     ".": {
       "import": "./src/index.ts",
       "types": "./dist/index.d.ts",
       "default": "./src/index.ts"
     },
-    "./instance/*": {
-      "import": "./src/instance/*.ts",
-      "types": "./dist/instance/*.d.ts",
-      "default": "./src/instance/*.ts"
-    },
     "./instance": {
-      "import": "./src/instance/index.ts",
-      "types": "./dist/instance/index.d.ts",
-      "default": "./src/instance/index.ts"
+      "import": "./src/instance.ts",
+      "types": "./dist/instance.d.ts",
+      "default": "./src/instance.ts"
+    },
+    "./logger/*": {
+      "import": "./src/logger/*.ts",
+      "types": "./dist/logger/*.d.ts",
+      "default": "./src/logger/*.ts"
+    },
+    "./logger": {
+      "import": "./src/logger/index.ts",
+      "types": "./dist/logger/index.d.ts",
+      "default": "./src/logger/index.ts"
     },
     "./config/*": {
       "import": "./src/config/*.ts",
@@ -54,18 +60,22 @@
       "types": "./dist/globals/index.d.ts",
       "default": "./src/globals/index.ts"
     },
-    "./plugins/*": {
-      "import": "./src/plugins/*.ts",
-      "types": "./dist/plugins/*.d.ts",
-      "default": "./src/plugins/*.ts"
+    "./react/hooks/*": {
+      "import": "./src/react/hooks/*.ts",
+      "types": "./dist/react/hooks/*.d.ts",
+      "default": "./src/react/hooks/*.ts"
     },
-    "./plugins": {
-      "import": "./src/plugins/index.ts",
-      "types": "./dist/plugins/index.d.ts",
-      "default": "./src/plugins/index.ts"
+    "./react/hooks/useForge": {
+      "import": "./src/react/hooks/useForge.ts",
+      "types": "./dist/react/hooks/useForge.d.ts",
+      "default": "./src/react/hooks/useForge.ts"
     },
-    "./react/hooks/*": "./src/react/hooks/*.ts",
     "./react/hooks/utils/*": "./src/react/hooks/utils/*.ts",
+    "./react/components/provider": {
+      "import": "./src/react/components/provider.tsx",
+      "types": "./dist/react/components/provider.d.ts",
+      "default": "./src/react/components/provider.tsx"
+    },
     "./react/components/*": {
       "import": "./src/react/components/*.tsx",
       "types": "./dist/react/components/*.d.ts",

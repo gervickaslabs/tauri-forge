@@ -10,11 +10,14 @@ export function useForge(config: SanitizedConfig) {
   const isMounted = useIsMounted();
 
   useEffect(() => {
-    getForge(config).then((instance) => {
-      if (isMounted()) {
+    const initForge = async () => {
+      const instance = await getForge(config);
+      if (instance && isMounted()) {
         setForge(instance);
       }
-    });
+    };
+
+    initForge();
   }, [isMounted, config]);
 
   return forge;

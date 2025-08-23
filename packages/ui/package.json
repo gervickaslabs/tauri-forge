@@ -13,7 +13,7 @@
     "./styles.css": "./dist/styles.css",
     "./components/*": {
       "import": "./src/components/*.tsx",
-      "types": "./dist/components/*.d.tsx",
+      "types": "./dist/components/*.d.ts",
       "default": "./src/components/*.tsx"
     },
     "./hooks/*": "./src/hooks/*.ts",

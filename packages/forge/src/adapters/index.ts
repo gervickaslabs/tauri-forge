@@ -11,14 +11,11 @@ export {
 export { AdapterRegistry } from "@tauriforge/forge/adapters/registry";
 
 export type {
-  BaseAdapterConfig,
   BaseAdapter,
-  AdapterFactory,
-  EventAdapterConfig,
-  CommandAdapterConfig,
-  SanitizedCommandConfig,
-  SanitizedEventConfig,
-  EventCallback,
   BaseEventAdapter,
   BaseCommandAdapter,
+  BaseAdapterFactory,
+  BaseCommandAdapterFactory,
+  BaseEventAdapterFactory,
+  EventCallback,
 } from "@tauriforge/forge/adapters/types";

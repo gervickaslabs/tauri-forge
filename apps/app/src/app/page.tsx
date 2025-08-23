@@ -8,7 +8,8 @@ import type { BaseCommandAdapter } from "@tauriforge/forge/adapters";
 const Home = () => {
   const { forge } = useForgeContext();
 
-  const commandAdapter = forge?.getAdapter<BaseCommandAdapter>("command");
+  const commandAdapter =
+    forge?.adapters.getInstance<BaseCommandAdapter>("command");
 
   const handleCommandMutate = async () => {
     console.log(

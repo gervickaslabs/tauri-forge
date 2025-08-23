@@ -1,15 +1,15 @@
 import type {
-  BaseAdapterConfig,
-  AdapterFactory,
+  BaseAdapterFactory,
   BaseAdapter,
 } from "@tauriforge/forge/adapters/types";
 
 export class AdapterRegistry {
-  private factories = new Map<string, AdapterFactory<BaseAdapter, unknown>>();
+  private factories = new Map<string, BaseAdapterFactory<BaseAdapter>>();
+
   private instances = new Map<string, BaseAdapter>();
 
-  register<TAdapter extends BaseAdapter, TConfig = unknown>(
-    factory: AdapterFactory<TAdapter, TConfig>,
+  register<TAdapter extends BaseAdapter>(
+    factory: BaseAdapterFactory<TAdapter>,
   ): void {
     if (this.factories.has(factory.name)) {
       throw new Error(
@@ -20,10 +20,7 @@ export class AdapterRegistry {
     this.factories.set(factory.name, factory);
   }
 
-  async resolve<TAdapter extends BaseAdapter, C extends BaseAdapterConfig>(
-    name: string,
-    config: C,
-  ): Promise<TAdapter> {
+  async resolve<TAdapter extends BaseAdapter>(name: string): Promise<TAdapter> {
     if (this.instances.has(name)) {
       return this.instances.get(name) as TAdapter;
     }
@@ -34,12 +31,9 @@ export class AdapterRegistry {
       throw new Error(`No adapter factory registered for '${name}'`);
     }
 
-    if (factory.validateConfig && !factory.validateConfig(config)) {
-      throw new Error(`Invalid configuration for adapter '${name}'`);
-    }
+    const adapter = await factory.create();
 
-    const adapter = await factory.create(config);
-    await adapter.initialize(config);
+    await adapter.initialize();
 
     this.instances.set(name, adapter);
 
@@ -56,32 +50,5 @@ export class AdapterRegistry {
 
   getAvailableAdapters(): string[] {
     return Array.from(this.factories.keys());
-  }
-
-  async destroyAll(): Promise<void> {
-    const destroyPromises = Array.from(this.instances.values()).map((adapter) =>
-      adapter.destroy().catch((error) => {
-        console.error(`Error destroying adapter '${adapter.name}':`, error);
-      }),
-    );
-
-    await Promise.all(destroyPromises);
-
-    this.instances.clear();
-  }
-
-  async healthCheckAll(): Promise<Record<string, boolean>> {
-    const results: Record<string, boolean> = {};
-
-    for (const [name, adapter] of this.instances) {
-      try {
-        results[name] = await adapter.healthCheck();
-      } catch (error) {
-        console.error(`Health check failed for adapter '${name}':`, error);
-        results[name] = false;
-      }
-    }
-
-    return results;
   }
 }

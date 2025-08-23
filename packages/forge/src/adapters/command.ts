@@ -1,28 +1,12 @@
 import { invoke } from "@tauri-apps/api/core";
 
 import type {
-  AdapterFactory,
+  BaseAdapterFactory,
   BaseCommandAdapter,
-  SanitizedCommandConfig,
 } from "@tauriforge/forge/adapters/types";
 
 export class CommandAdapter implements BaseCommandAdapter {
-  readonly name = "command";
-  private config!: SanitizedCommandConfig;
-
-  async initialize(config: SanitizedCommandConfig): Promise<void> {
-    this.config = config;
-  }
-
-  async destroy(): Promise<void> {}
-
-  async healthCheck(): Promise<boolean> {
-    try {
-      return true;
-    } catch {
-      return false;
-    }
-  }
+  async initialize(): Promise<void> {}
 
   async query<T = unknown>(key: string): Promise<T> {
     return invoke<T>(key);
@@ -33,15 +17,9 @@ export class CommandAdapter implements BaseCommandAdapter {
   }
 }
 
-export const CommandAdapterFactory: AdapterFactory<
-  CommandAdapter,
-  SanitizedCommandConfig
-> = {
+export const CommandAdapterFactory: BaseAdapterFactory<CommandAdapter> = {
   name: "command",
-  async create(_: SanitizedCommandConfig): Promise<CommandAdapter> {
+  async create(): Promise<CommandAdapter> {
     return new CommandAdapter();
-  },
-  validateConfig(config: SanitizedCommandConfig): boolean {
-    return typeof config === "object" && config !== null;
   },
 };

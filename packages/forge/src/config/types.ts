@@ -1,8 +1,7 @@
 import type {
-  CommandAdapterConfig,
-  EventAdapterConfig,
-  SanitizedCommandConfig,
-  SanitizedEventConfig,
+  BaseAdapterFactory,
+  BaseCommandAdapter,
+  BaseEventAdapter,
 } from "@tauriforge/forge/adapters/types";
 
 import type {
@@ -11,29 +10,28 @@ import type {
 } from "@tauriforge/forge/globals/types";
 
 import type {
-  PluginConfig,
-  SanitizedPluginConfig,
-} from "@tauriforge/forge/plugins/types";
+  BaseLogggerFactory,
+  BaseLogger,
+} from "@tauriforge/forge/logger/types";
 
 export interface Config {
   adapters?: {
-    command?: CommandAdapterConfig | false;
-    event?: EventAdapterConfig | false;
+    command?: BaseAdapterFactory<BaseCommandAdapter>;
+    event?: BaseAdapterFactory<BaseEventAdapter>;
   };
 
+  logger?: BaseLogggerFactory<BaseLogger>;
+
   global?: GlobalConfig;
-  plugins?: PluginConfig[];
 }
 
 export interface SanitizedConfig {
   adapters: {
-    command: SanitizedCommandConfig;
-    event: SanitizedEventConfig;
-    /// change it to [key]: or array Factory and create a runner to initialize it
+    command: BaseAdapterFactory<BaseCommandAdapter>;
+    event: BaseAdapterFactory<BaseEventAdapter>;
   };
 
-  global: SanitizedGlobalConfig;
-  plugins: SanitizedPluginConfig[];
+  logger: BaseLogggerFactory<BaseLogger>;
 
-  readonly activeAdapters: string[];
+  global: SanitizedGlobalConfig;
 }
